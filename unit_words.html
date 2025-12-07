@@ -531,7 +531,7 @@
             border-left: 5px solid #ff9f00;
         }
         
-        /* Riddle styles - FIXED */
+        /* Riddle styles */
         .riddle-container {
             background-color: #f0f7ff;
             padding: 25px;
@@ -964,7 +964,7 @@
                 </div>
             </div>
             
-            <!-- Unit 4 Content -->
+            <!-- Unit 4 Content - FIXED WITH FILL-IN-THE-BLANKS -->
             <div class="content-section unit-content" id="unit4-content" style="display: none;">
                 <div class="section-title">
                     <i class="fas fa-film"></i>
@@ -978,14 +978,32 @@
                 <div class="exercise-container">
                     <div class="exercise-title">
                         <i class="fas fa-edit"></i>
-                        Exercise: Crossword Puzzle
+                        Exercise: Complete the Sentences
                     </div>
                     
                     <div class="exercise-instruction">
-                        Peter is doing a crossword puzzle in a film magazine. Complete the crossword puzzle with the correct film types and character adjectives.
+                        Complete each sentence by filling in the blanks with the correct words from the word list.
                     </div>
                     
                     <div class="exercise-content">
+                        <div class="exercise-text" id="unit4-exercise-text">
+                            1. My favorite movie is a <span class="blank" id="blank4-1">__________<span class="blank-number">1</span></span> because it makes me laugh so much.<br><br>
+                            
+                            2. In the <span class="blank" id="blank4-2">__________<span class="blank-number">2</span></span>, the hero fights against many villains to save the city.<br><br>
+                            
+                            3. Harry Potter is a famous <span class="blank" id="blank4-3">__________<span class="blank-number">3</span></span> about magic and wizards.<br><br>
+                            
+                            4. I don't like watching <span class="blank" id="blank4-4">__________<span class="blank-number">4</span></span> because they give me nightmares.<br><br>
+                            
+                            5. Sarah is too <span class="blank" id="blank4-5">__________<span class="blank-number">5</span></span> to speak in front of the whole class.<br><br>
+                            
+                            6. After moving to a new city, Tom felt very <span class="blank" id="blank4-6">__________<span class="blank-number">6</span></span> without his old friends.<br><br>
+                            
+                            7. A <span class="blank" id="blank4-7">__________<span class="blank-number">7</span></span> person only thinks about themselves and doesn't help others.<br><br>
+                            
+                            8. Children are naturally <span class="blank" id="blank4-8">__________<span class="blank-number">8</span></span> and ask many questions about the world around them.
+                        </div>
+                        
                         <div class="word-options-container">
                             <div class="word-options-title">
                                 <i class="fas fa-list"></i> Word Options:
@@ -1100,7 +1118,7 @@
                 </div>
             </div>
             
-            <!-- Unit 6 Content - FIXED RIDDLE EXERCISE -->
+            <!-- Unit 6 Content -->
             <div class="content-section unit-content" id="unit6-content" style="display: none;">
                 <div class="section-title">
                     <i class="fas fa-globe-americas"></i>
@@ -1333,12 +1351,12 @@
                 ],
                 exercise: {
                     type: "fill-blanks",
-                    text: "1. A __________ has funny characters. It makes people laugh. 2. In this __________ film, the hero has a fierce fight with the bad people and saves his daughter. 3. The Little Mermaid is a famous __________ film about an undersea princess. 4. Many people like watching __________ films because they want to get scared! 5. Lily is a __________ girl. She does not say anything when a classmate makes fun of her. 6. Alan often feels __________ because he has no friends. 7. Rachel always cares about people around her. She is not __________. 8. Samuel is very __________ about things around him. He always wants to find out how things work.",
+                    text: "1. My favorite movie is a __________ because it makes me laugh so much. 2. In the __________, the hero fights against many villains to save the city. 3. Harry Potter is a famous __________ about magic and wizards. 4. I don't like watching __________ because they give me nightmares. 5. Sarah is too __________ to speak in front of the whole class. 6. After moving to a new city, Tom felt very __________ without his old friends. 7. A __________ person only thinks about themselves and doesn't help others. 8. Children are naturally __________ and ask many questions about the world around them.",
                     answers: [
                         "comedy",
-                        "action",
-                        "fantasy",
-                        "horror",
+                        "action film",
+                        "fantasy film",
+                        "horror film",
                         "timid",
                         "lonely",
                         "selfish",
