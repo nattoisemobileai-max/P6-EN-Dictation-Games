@@ -20,6 +20,8 @@
             --purple-color: #8e44ad;
             --pink-color: #e84393;
             --teal-color: #00b894;
+            --orange-color: #e67e22;
+            --indigo-color: #6c5ce7;
             --danger-color: #ff6b6b;
             --light-color: #FFFFFF;
             --dark-color: #333333;
@@ -136,13 +138,47 @@
             margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: space-between;
             padding-bottom: 15px;
             border-bottom: 3px solid #f0f0f0;
         }
         
+        .section-title-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
         .section-title i {
             color: var(--primary-color);
+        }
+        
+        .toggle-btn {
+            background-color: #f0f7ff;
+            border: 2px solid #e3eeff;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .toggle-btn:hover {
+            background-color: #e3eeff;
+            transform: translateY(-2px);
+        }
+        
+        .toggle-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-btn.collapsed i {
+            transform: rotate(180deg);
         }
         
         .modules-grid {
@@ -300,12 +336,37 @@
             background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
         }
         
+        .miss-tse-card .module-header {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+        
         .progress-summary {
             background: linear-gradient(135deg, #f0f7ff 0%, #e3eeff 100%);
             border-radius: var(--border-radius);
             padding: 30px;
             margin-bottom: 20px;
             border-left: 6px solid var(--primary-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .collapsible-section {
+            transition: all 0.3s ease;
+        }
+        
+        .collapsible-section.collapsed .section-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .collapsible-section .section-content {
+            max-height: 1000px;
+            overflow: hidden;
+            opacity: 1;
+            transition: all 0.5s ease;
         }
         
         .progress-title {
@@ -421,6 +482,7 @@
             border-radius: var(--border-radius);
             padding: 30px;
             margin-top: 30px;
+            transition: all 0.3s ease;
         }
         
         .activity-list {
@@ -471,6 +533,35 @@
             font-size: 18px;
         }
         
+        /* Control panel for collapsing sections */
+        .control-panel {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            background-color: white;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .modules-grid {
@@ -507,6 +598,13 @@
             
             .section-title {
                 font-size: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .section-title .toggle-btn {
+                align-self: flex-start;
             }
             
             .modules-grid {
@@ -555,6 +653,10 @@
             .stat-number {
                 font-size: 30px;
             }
+            
+            .control-panel {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -565,21 +667,23 @@
                 <div class="logo-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div class="logo-text">P6 - English Study Room</div>
-               
+                <div class="logo-text">Oxford English Learning Hub</div>
+                <div class="tagline">
+                    Your comprehensive platform for mastering English vocabulary, grammar, writing, and exam preparation
+                </div>
             </div>
             
             <div class="stats-container">
                 <div class="stat-item">
-                    <div class="stat-number" id="totalModules">7</div>
+                    <div class="stat-number" id="totalModules">8</div>
                     <div class="stat-label">Learning Modules</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="totalExercises">45+</div>
+                    <div class="stat-number" id="totalExercises">55+</div>
                     <div class="stat-label">Exercises</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="totalWords">250+</div>
+                    <div class="stat-number" id="totalWords">300+</div>
                     <div class="stat-label">Vocabulary Words</div>
                 </div>
                 <div class="stat-item">
@@ -590,81 +694,12 @@
         </header>
         
         <div class="main-content">
-            <div class="progress-summary">
-                <div class="progress-title">Your Learning Journey</div>
-                <p>Track your progress across all English learning modules. Complete exercises to improve your skills.</p>
-                
-                <div class="progress-items">
-                    <div class="progress-item">
-                        <div class="progress-item-icon" style="background-color: #8e44ad;">
-                            <i class="fas fa-microphone-alt"></i>
-                        </div>
-                        <div class="progress-item-text">
-                            <div class="progress-item-title">Dictation</div>
-                            <div class="progress-item-desc">Listening and writing practice</div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" id="dictation-progress" style="width: 0%; background-color: #8e44ad;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-item">
-                        <div class="progress-item-icon" style="background-color: #1cb0f6;">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="progress-item-text">
-                            <div class="progress-item-title">Unit Words (6A)</div>
-                            <div class="progress-item-desc">Vocabulary building</div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" id="unit-words-progress" style="width: 0%; background-color: #1cb0f6;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-item">
-                        <div class="progress-item-icon" style="background-color: #00b894;">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <div class="progress-item-text">
-                            <div class="progress-item-title">Grammar</div>
-                            <div class="progress-item-desc">Grammar rules and exercises</div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" id="grammar-progress" style="width: 0%; background-color: #00b894;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="quick-links">
-                    <a href="#dictation" class="quick-link">
-                        <i class="fas fa-microphone-alt"></i> Go to Dictation
-                    </a>
-                    <a href="#unit-words" class="quick-link">
-                        <i class="fas fa-book"></i> Go to Unit Words
-                    </a>
-                    <a href="#grammar" class="quick-link">
-                        <i class="fas fa-language"></i> Go to Grammar
-                    </a>
-                </div>
-            </div>
-            
-            <div class="recent-activity" id="recent-activity">
-                <div class="section-title">
-                    <i class="fas fa-history"></i>
-                    Recent Activity
-                </div>
-                <div class="activity-list" id="activity-list">
-                    <div class="activity-empty" id="activity-empty">
-                        <p style="text-align: center; color: #999; font-style: italic; padding: 20px;">
-                            No recent activity. Complete some exercises to see your progress here!
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
+            <!-- Learning Modules Section (Now at the top) -->
             <div class="section-title">
-                <i class="fas fa-th-large"></i>
-                Learning Modules
+                <div class="section-title-text">
+                    <i class="fas fa-th-large"></i>
+                    Learning Modules
+                </div>
             </div>
             
             <div class="modules-grid">
@@ -947,6 +982,173 @@
                         </a>
                     </div>
                 </div>
+                
+                <!-- Miss Tse Study Module -->
+                <div class="module-card miss-tse-card" id="miss-tse">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <div class="module-title">Miss Tse Study</div>
+                            <div class="module-desc">Specialized learning materials</div>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-stats">
+                            <div class="module-stat">
+                                <div class="module-stat-value">10+</div>
+                                <div class="module-stat-label">Lessons</div>
+                            </div>
+                            <div class="module-stat">
+                                <div class="module-stat-value" id="miss-tse-exercises">25+</div>
+                                <div class="module-stat-label">Exercises</div>
+                            </div>
+                            <div class="module-stat">
+                                <div class="module-stat-value" id="miss-tse-progress-value">0%</div>
+                                <div class="module-stat-label">Progress</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="module-features">
+                            <li><i class="fas fa-check-circle"></i> Customized study materials</li>
+                            <li><i class="fas fa-check-circle"></i> Focused skill development</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized feedback</li>
+                            <li><i class="fas fa-check-circle"></i> Targeted practice exercises</li>
+                        </ul>
+                        
+                        <a href="#" class="module-btn">
+                            <i class="fas fa-play-circle"></i> Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Control Panel for collapsing sections -->
+            <div class="control-panel">
+                <button class="control-btn" id="toggle-all-btn">
+                    <i class="fas fa-compress-alt"></i> Toggle All Sections
+                </button>
+                <button class="control-btn" id="expand-all-btn">
+                    <i class="fas fa-expand-alt"></i> Expand All
+                </button>
+                <button class="control-btn" id="collapse-all-btn">
+                    <i class="fas fa-minus-square"></i> Collapse All
+                </button>
+            </div>
+            
+            <!-- Your Learning Journey Section (Now with collapse functionality) -->
+            <div class="collapsible-section" id="learning-journey-section">
+                <div class="section-title">
+                    <div class="section-title-text">
+                        <i class="fas fa-chart-line"></i>
+                        Your Learning Journey
+                    </div>
+                    <button class="toggle-btn" id="journey-toggle-btn">
+                        <i class="fas fa-chevron-down"></i> Hide
+                    </button>
+                </div>
+                
+                <div class="section-content">
+                    <div class="progress-summary">
+                        <div class="progress-title">Track your progress across all English learning modules</div>
+                        <p>Complete exercises to improve your skills and see your progress grow.</p>
+                        
+                        <div class="progress-items">
+                            <div class="progress-item">
+                                <div class="progress-item-icon" style="background-color: #8e44ad;">
+                                    <i class="fas fa-microphone-alt"></i>
+                                </div>
+                                <div class="progress-item-text">
+                                    <div class="progress-item-title">Dictation</div>
+                                    <div class="progress-item-desc">Listening and writing practice</div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="dictation-progress" style="width: 0%; background-color: #8e44ad;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-item-icon" style="background-color: #1cb0f6;">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="progress-item-text">
+                                    <div class="progress-item-title">Unit Words (6A)</div>
+                                    <div class="progress-item-desc">Vocabulary building</div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="unit-words-progress" style="width: 0%; background-color: #1cb0f6;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-item-icon" style="background-color: #00b894;">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <div class="progress-item-text">
+                                    <div class="progress-item-title">Grammar</div>
+                                    <div class="progress-item-desc">Grammar rules and exercises</div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="grammar-progress" style="width: 0%; background-color: #00b894;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-item-icon" style="background-color: #6c5ce7;">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <div class="progress-item-text">
+                                    <div class="progress-item-title">Miss Tse Study</div>
+                                    <div class="progress-item-desc">Specialized learning materials</div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="miss-tse-progress" style="width: 0%; background-color: #6c5ce7;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-links">
+                            <a href="#dictation" class="quick-link">
+                                <i class="fas fa-microphone-alt"></i> Go to Dictation
+                            </a>
+                            <a href="#unit-words" class="quick-link">
+                                <i class="fas fa-book"></i> Go to Unit Words
+                            </a>
+                            <a href="#grammar" class="quick-link">
+                                <i class="fas fa-language"></i> Go to Grammar
+                            </a>
+                            <a href="#miss-tse" class="quick-link">
+                                <i class="fas fa-chalkboard-teacher"></i> Go to Miss Tse Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity Section (Now with collapse functionality) -->
+            <div class="collapsible-section" id="recent-activity-section">
+                <div class="section-title">
+                    <div class="section-title-text">
+                        <i class="fas fa-history"></i>
+                        Recent Activity
+                    </div>
+                    <button class="toggle-btn" id="activity-toggle-btn">
+                        <i class="fas fa-chevron-down"></i> Hide
+                    </button>
+                </div>
+                
+                <div class="section-content">
+                    <div class="recent-activity">
+                        <div class="activity-list" id="activity-list">
+                            <div class="activity-empty" id="activity-empty">
+                                <p style="text-align: center; color: #999; font-style: italic; padding: 20px;">
+                                    No recent activity. Complete some exercises to see your progress here!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -982,20 +1184,28 @@
             // Load dictation progress (if exists)
             const dictationProgress = localStorage.getItem('dictationProgress') || 0;
             
+            // Load Miss Tse Study progress (if exists)
+            const missTseProgress = localStorage.getItem('missTseProgress') || 0;
+            
             // Update progress bars
             document.getElementById('dictation-progress').style.width = dictationProgress + '%';
             document.getElementById('unit-words-progress').style.width = unitWordsProgress + '%';
+            document.getElementById('miss-tse-progress').style.width = missTseProgress + '%';
             
             // Update progress values
             document.getElementById('dictation-progress-value').textContent = dictationProgress + '%';
             document.getElementById('unit-words-progress-value').textContent = unitWordsProgress + '%';
+            document.getElementById('miss-tse-progress-value').textContent = missTseProgress + '%';
             
             // Update total progress
-            const totalProgress = Math.round((parseInt(dictationProgress) + unitWordsProgress) / 2);
+            const totalProgress = Math.round((parseInt(dictationProgress) + unitWordsProgress + parseInt(missTseProgress)) / 3);
             document.getElementById('progressPercentage').textContent = totalProgress + '%';
             
             // Update exercise counts
             document.getElementById('unit-words-exercises').textContent = completedUnitExercises + '/' + totalUnitExercises;
+            
+            // Update module count
+            document.getElementById('totalModules').textContent = '8';
             
             // Load recent activity
             loadRecentActivity();
@@ -1043,6 +1253,9 @@
                 } else if (activity.unitTitle.includes('Cultural')) {
                     iconColor = '#2ecc71';
                     iconClass = 'fas fa-globe-americas';
+                } else if (activity.unitTitle.includes('Miss Tse')) {
+                    iconColor = '#6c5ce7';
+                    iconClass = 'fas fa-chalkboard-teacher';
                 }
                 
                 const date = new Date(activity.timestamp);
@@ -1091,6 +1304,87 @@
                     loadRecentActivity();
                 }, 500);
             }
+            
+            // Set up toggle buttons
+            setupToggleButtons();
+        }
+        
+        // Set up toggle buttons for collapsible sections
+        function setupToggleButtons() {
+            const journeyToggleBtn = document.getElementById('journey-toggle-btn');
+            const activityToggleBtn = document.getElementById('activity-toggle-btn');
+            const journeySection = document.getElementById('learning-journey-section');
+            const activitySection = document.getElementById('recent-activity-section');
+            
+            const toggleAllBtn = document.getElementById('toggle-all-btn');
+            const expandAllBtn = document.getElementById('expand-all-btn');
+            const collapseAllBtn = document.getElementById('collapse-all-btn');
+            
+            // Toggle Learning Journey section
+            journeyToggleBtn.addEventListener('click', function() {
+                journeySection.classList.toggle('collapsed');
+                
+                if (journeySection.classList.contains('collapsed')) {
+                    this.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+                } else {
+                    this.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                }
+            });
+            
+            // Toggle Recent Activity section
+            activityToggleBtn.addEventListener('click', function() {
+                activitySection.classList.toggle('collapsed');
+                
+                if (activitySection.classList.contains('collapsed')) {
+                    this.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+                } else {
+                    this.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                }
+            });
+            
+            // Toggle All Sections
+            toggleAllBtn.addEventListener('click', function() {
+                const journeyCollapsed = journeySection.classList.contains('collapsed');
+                const activityCollapsed = activitySection.classList.contains('collapsed');
+                
+                // If all are expanded, collapse all
+                if (!journeyCollapsed && !activityCollapsed) {
+                    journeySection.classList.add('collapsed');
+                    activitySection.classList.add('collapsed');
+                    journeyToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+                    activityToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+                } 
+                // If all are collapsed, expand all
+                else if (journeyCollapsed && activityCollapsed) {
+                    journeySection.classList.remove('collapsed');
+                    activitySection.classList.remove('collapsed');
+                    journeyToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                    activityToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                }
+                // If mixed state, expand all
+                else {
+                    journeySection.classList.remove('collapsed');
+                    activitySection.classList.remove('collapsed');
+                    journeyToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                    activityToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                }
+            });
+            
+            // Expand All Sections
+            expandAllBtn.addEventListener('click', function() {
+                journeySection.classList.remove('collapsed');
+                activitySection.classList.remove('collapsed');
+                journeyToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+                activityToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide';
+            });
+            
+            // Collapse All Sections
+            collapseAllBtn.addEventListener('click', function() {
+                journeySection.classList.add('collapsed');
+                activitySection.classList.add('collapsed');
+                journeyToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+                activityToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show';
+            });
         }
         
         // Initialize when page loads
