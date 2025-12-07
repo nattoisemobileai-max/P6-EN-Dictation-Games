@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxford English 6A - Grammar Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #1cb0f6;
+            --secondary-color: #58cc02;
+            --accent-color: #ff9f00;
+            --purple-color: #8e44ad;
+            --pink-color: #e84393;
+            --teal-color: #00b894;
+            --danger-color: #ff6b6b;
+            --light-color: #FFFFFF;
+            --dark-color: #333333;
+            --gray-color: #F5F5F5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --card-bg: #FFFFFF;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6ecf5 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            background-color: white;
+            color: #00b894;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+            font-size: 36px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 180px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .main-content {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        .section-title i {
+            color: #00b894;
+        }
+        
+        .units-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0 30px 30px;
+            flex-wrap: wrap;
+        }
+        
+        .unit-btn {
+            background: linear-gradient(135deg, #e3eeff 0%, #d6e4ff 100%);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 140px;
+            box-shadow: var(--shadow);
+        }
+        
+        .unit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .unit-btn.active {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            box-shadow: 0 6px 18px rgba(0, 184, 148, 0.3);
+        }
+        
+        .unit-btn.completed {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #4db500 100%);
+            color: white;
+        }
+        
+        .unit-icon {
+            font-size: 32px;
+        }
+        
+        .unit-content {
+            display: none;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .unit-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .grammar-topic {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .grammar-topic:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .topic-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00b894;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .topic-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .grammar-rule {
+            background-color: #f0f7ff;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #00b894;
+        }
+        
+        .rule-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rule-content {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .example-container {
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .example-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .example-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .example-sentence {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .example-translation {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .exercise-container {
+            background-color: #f0f7ff;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .exercise-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .exercise-instruction {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: var(--border-radius);
+            line-height: 1.6;
+        }
+        
+        .exercise-content {
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .exercise-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .blank {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 2px dashed var(--accent-color);
+            margin: 0 8px;
+            text-align: center;
+            color: transparent;
+            position: relative;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .blank.has-answer {
+            color: var(--dark-color);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .blank-number {
+            position: absolute;
+            top: -25px;
+            left: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .word-options-container {
+            margin-top: 30px;
+        }
+        
+        .word-options-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .word-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .word-option {
+            background-color: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 25px;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--secondary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .word-option:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .word-option.used {
+            opacity: 0.4;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .word-option.used:hover {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .exercise-result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            display: none;
+        }
+        
+        .exercise-result.correct {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            display: block;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .exercise-result.incorrect {
+            background-color: #FFEBEE;
+            color: #C62828;
+            display: block;
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .exercise-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .exercise-btn {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+        }
+        
+        .exercise-btn.reset-btn {
+            background: linear-gradient(135deg, var(--danger-color) 0%, #ff5252 100%);
+        }
+        
+        .voice-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #E3F2FD;
+            border-radius: var(--border-radius);
+            flex-wrap: wrap;
+        }
+        
+        .voice-selector label {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .voice-selector select {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #BBDEFB;
+            background-color: white;
+            font-size: 14px;
+            min-width: 250px;
+            color: var(--dark-color);
+        }
+        
+        .pronunciation-box {
+            background-color: #f0f7ff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9f00;
+        }
+        
+        .pronunciation-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pronunciation-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .speak-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .speak-btn:hover {
+            background-color: #0D8BF0;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            margin-top: 30px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+        
+        .footer-text {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .progress-summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e3eeff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 30px;
+            border-left: 6px solid #00b894;
+        }
+        
+        .progress-text h3 {
+            color: #00b894;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-text p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .progress-stats {
+            text-align: right;
+        }
+        
+        .progress-percentage {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(88, 204, 2, 0.2);
+        }
+        
+        .progress-label {
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .progress-bar-container {
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, #7ee043 100%);
+            border-radius: 6px;
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 8px rgba(88, 204, 2, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Multiple choice styles */
+        .mcq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .mcq-question {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mcq-option {
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mcq-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .mcq-option.selected {
+            background-color: #E3F2FD;
+            border-color: var(--primary-color);
+        }
+        
+        .mcq-option.correct {
+            background-color: #E8F5E9;
+            border-color: var(--secondary-color);
+        }
+        
+        .mcq-option.incorrect {
+            background-color: #FFEBEE;
+            border-color: var(--danger-color);
+        }
+        
+        .mcq-option-label {
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .units-container {
+                gap: 10px;
+            }
+            
+            .unit-btn {
+                min-width: 120px;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            
+            .logo-text {
+                font-size: 32px;
+            }
+            
+            .progress-summary {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                margin: 20px;
+            }
+            
+            .progress-stats {
+                text-align: left;
+                width: 100%;
+            }
+            
+            .units-container {
+                padding: 0 20px 20px;
+            }
+            
+            .unit-btn {
+                min-width: 100px;
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            
+            .main-content {
+                padding: 0 20px 20px;
+            }
+            
+            .unit-content {
+                padding: 20px;
+            }
+            
+            .voice-selector {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .voice-selector select {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .unit-btn {
+                min-width: 80px;
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .exercise-text {
+                font-size: 16px;
+            }
+            
+            .blank {
+                min-width: 100px;
+            }
+            
+            .exercise-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-language"></i></div>
+                <div class="logo-text">Oxford English 6A - Grammar Learning</div>
+                <div class="tagline">
+                    Master English grammar with interactive lessons and exercises based on the Oxford Living English 6A syllabus
+                </div>
+            </div>
+            
+            <div class="progress-summary">
+                <div class="progress-text">
+                    <h3>Your Grammar Progress</h3>
+                    <p>Complete grammar units to improve your English skills</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-stats">
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                    <div class="progress-label">Completed</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="units-container" id="unitsContainer">
+            <button class="unit-btn" data-unit="1">
+                <i class="fas fa-hands-helping unit-icon"></i>
+                <span>Unit 1</span>
+            </button>
+            <button class="unit-btn" data-unit="2">
+                <i class="fas fa-exclamation-triangle unit-icon"></i>
+                <span>Unit 2</span>
+            </button>
+            <button class="unit-btn" data-unit="3">
+                <i class="fas fa-utensils unit-icon"></i>
+                <span>Unit 3</span>
+            </button>
+            <button class="unit-btn" data-unit="4">
+                <i class="fas fa-film unit-icon"></i>
+                <span>Unit 4</span>
+            </button>
+            <button class="unit-btn" data-unit="5">
+                <i class="fas fa-suitcase-rolling unit-icon"></i>
+                <span>Unit 5</span>
+            </button>
+            <button class="unit-btn" data-unit="6">
+                <i class="fas fa-globe-americas unit-icon"></i>
+                <span>Unit 6</span>
+            </button>
+        </div>
+        
+        <div class="main-content">
+            <!-- Unit 1 Content -->
+            <div class="unit-content" id="unit1-content">
+                <div class="section-title">
+                    <i class="fas fa-hands-helping"></i>
+                    Unit 1: For a Good Cause - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "so many" and "so much"
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>so many</strong> and <strong>so much</strong> to express degree or quantity. 
+                        <strong>So many</strong> is used with countable nouns, while <strong>so much</strong> is used with uncountable nouns.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>So many</strong> + countable plural noun<br>
+                            <strong>So much</strong> + uncountable noun
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">We have <strong>so many things</strong> for the fund-raising fair.</div>
+                            <div class="example-translation">我们为筹款活动准备了这么多东西。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">We will raise <strong>so much money</strong> for the charity.</div>
+                            <div class="example-translation">我们将为慈善机构筹集这么多钱。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">There are <strong>so many volunteers</strong> helping today.</div>
+                            <div class="example-translation">今天有这么多志愿者在帮忙。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">She donated <strong>so much time</strong> to the community center.</div>
+                            <div class="example-translation">她为社区中心奉献了这么多时间。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "who" and "which" as relative pronouns
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>who</strong> to add information about people, and <strong>which</strong> to add information about things or animals.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>Who</strong> → refers to people<br>
+                            <strong>Which</strong> → refers to things, animals, or ideas
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">They are helping people <strong>who</strong> are homeless.</div>
+                            <div class="example-translation">他们正在帮助那些无家可归的人。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">HKGDA is a charity <strong>which</strong> focuses on providing guide dogs for the blind.</div>
+                            <div class="example-translation">香港导盲犬协会是一个专注于为盲人提供导盲犬的慈善机构。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">My friend, <strong>who</strong> is a doctor, volunteers at the clinic every weekend.</div>
+                            <div class="example-translation">我的朋友是一名医生，他每周末都在诊所做志愿者。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">The organization, <strong>which</strong> was founded in 2010, has helped thousands of people.</div>
+                            <div class="example-translation">这个成立于2010年的组织已经帮助了数千人。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Complete the sentences by choosing the correct words from the options.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="mcq-container">
+                            <!-- Question 1 -->
+                            <div class="mcq-question">1. There are __________ volunteers at the charity event today.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="1" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">so much</div>
+                                </div>
+                                <div class="mcq-option" data-question="1" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">so many</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 2 -->
+                            <div class="mcq-question">2. We need __________ water for the marathon runners.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="2" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">so much</div>
+                                </div>
+                                <div class="mcq-option" data-question="2" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">so many</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div class="mcq-question">3. The man __________ organized this event is my teacher.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="3" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">who</div>
+                                </div>
+                                <div class="mcq-option" data-question="3" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">which</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 4 -->
+                            <div class="mcq-question">4. The charity __________ helps children in need is called "Save the Children".</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="4" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">who</div>
+                                </div>
+                                <div class="mcq-option" data-question="4" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">which</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit1-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit1-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit1-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 2 Content -->
+            <div class="unit-content" id="unit2-content">
+                <div class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Unit 2: Lead a Helping Hand - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Conditional sentences with "if"
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>if</strong> to talk about possible results or consequences. This is called the first conditional.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>If</strong> + present simple, + will + base verb
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> they drink dirty water, they <strong>will get</strong> sick easily.</div>
+                            <div class="example-translation">如果他们喝脏水，他们很容易生病。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> it rains tomorrow, the charity walk <strong>will be</strong> cancelled.</div>
+                            <div class="example-translation">如果明天下雨，慈善步行活动将被取消。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> we don't help them, they <strong>won't have</strong> enough food.</div>
+                            <div class="example-translation">如果我们不帮助他们，他们将没有足够的食物。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "so that" to show purpose
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>so that</strong> to explain the purpose or reason for doing something.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            Action + <strong>so that</strong> + purpose/result
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">We will buy bottled water <strong>so that</strong> they have clean water to drink.</div>
+                            <div class="example-translation">我们将购买瓶装水，这样他们就有干净的水可以喝。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">We are raising money <strong>so that</strong> we can build a new school.</div>
+                            <div class="example-translation">我们正在筹款，以便我们可以建一所新学校。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">She studies hard <strong>so that</strong> she can become a doctor.</div>
+                            <div class="example-translation">她努力学习，以便能成为一名医生。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pronunciation-box">
+                    <div class="pronunciation-title">
+                        <i class="fas fa-volume-up"></i>
+                        Pronunciation: Weak forms
+                    </div>
+                    <div class="pronunciation-content">
+                        In natural speech, some words are pronounced with a weaker sound. For example, "that" in "so that" is often pronounced weakly.
+                        <br><br>
+                        <strong>Example:</strong> "so that" sounds like "so thət"
+                    </div>
+                    <button class="speak-btn" id="pronounce-weak-forms">
+                        <i class="fas fa-play"></i> Listen to pronunciation
+                    </button>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Complete the sentences with the correct words.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="exercise-text" id="unit2-exercise-text">
+                            1. __________ there is an earthquake, the buildings might collapse.<br><br>
+                            
+                            2. We are collecting clothes __________ the victims have something to wear.<br><br>
+                            
+                            3. __________ you see someone in trouble, you should offer help.<br><br>
+                            
+                            4. They are building stronger houses __________ they can survive the next typhoon.
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit2-word-options">
+                                <div class="word-option" data-word="If">If</div>
+                                <div class="word-option" data-word="so that">so that</div>
+                                <div class="word-option" data-word="When">When</div>
+                                <div class="word-option" data-word="because">because</div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit2-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit2-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit2-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select2"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select2">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 3 Content -->
+            <div class="unit-content" id="unit3-content">
+                <div class="section-title">
+                    <i class="fas fa-utensils"></i>
+                    Unit 3: Junior Super Chef - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "although" for contrast
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>although</strong> to link two contrasting ideas. It shows a surprising or unexpected result.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>Although</strong> + contrasting idea, + main idea<br>
+                            or<br>
+                            Main idea + <strong>although</strong> + contrasting idea
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Although</strong> Luke was well prepared, he felt nervous.</div>
+                            <div class="example-translation">虽然卢克准备充分，但他感到紧张。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">I enjoy cooking, <strong>although</strong> I sometimes make mistakes.</div>
+                            <div class="example-translation">我喜欢烹饪，虽然我有时会犯错。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Although</strong> it was his first time, he cooked perfectly.</div>
+                            <div class="example-translation">虽然这是他第一次，但他做得很好。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "after" and "before" for sequence
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>after</strong> and <strong>before</strong> to show the order of events or actions.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>After</strong> + event/action, + next event/action<br>
+                            <strong>Before</strong> + event/action, + previous event/action
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>After</strong> you add some flour, stir the mixture gently.</div>
+                            <div class="example-translation">加入一些面粉后，轻轻搅拌混合物。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Before</strong> you start cooking, wash your hands.</div>
+                            <div class="example-translation">开始烹饪前，请先洗手。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">Check the oven temperature <strong>before</strong> you put the cake in.</div>
+                            <div class="example-translation">把蛋糕放进烤箱之前，先检查一下温度。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pronunciation-box">
+                    <div class="pronunciation-title">
+                        <i class="fas fa-volume-up"></i>
+                        Pronunciation: Intonation in sentences with two clauses
+                    </div>
+                    <div class="pronunciation-content">
+                        When a sentence has two clauses (with words like "although", "after", "before"), the voice usually rises at the end of the first clause and falls at the end of the sentence.
+                        <br><br>
+                        <strong>Example:</strong> "Although Luke was well prepared ↗, he felt nervous. ↘"
+                    </div>
+                    <button class="speak-btn" id="pronounce-intonation">
+                        <i class="fas fa-play"></i> Listen to intonation example
+                    </button>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Choose the correct connective to complete each sentence.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="mcq-container">
+                            <!-- Question 1 -->
+                            <div class="mcq-question">1. __________ the recipe was difficult, she managed to make the cake perfectly.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="1" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">Although</div>
+                                </div>
+                                <div class="mcq-option" data-question="1" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">Because</div>
+                                </div>
+                                <div class="mcq-option" data-question="1" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">So that</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 2 -->
+                            <div class="mcq-question">2. __________ you chop the vegetables, heat the oil in the pan.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="2" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">After</div>
+                                </div>
+                                <div class="mcq-option" data-question="2" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">Before</div>
+                                </div>
+                                <div class="mcq-option" data-question="2" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">Although</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div class="mcq-question">3. Wash all the utensils __________ you start cooking.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="3" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">after</div>
+                                </div>
+                                <div class="mcq-option" data-question="3" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">before</div>
+                                </div>
+                                <div class="mcq-option" data-question="3" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">although</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 4 -->
+                            <div class="mcq-question">4. __________ he doesn't like vegetables, he eats them because they're healthy.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="4" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">After</div>
+                                </div>
+                                <div class="mcq-option" data-question="4" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">Before</div>
+                                </div>
+                                <div class="mcq-option" data-question="4" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">Although</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit3-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit3-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit3-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select3"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select3">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 4 Content -->
+            <div class="unit-content" id="unit4-content">
+                <div class="section-title">
+                    <i class="fas fa-film"></i>
+                    Unit 4: Film Magic - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Second conditional with "if"
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use the second conditional with <strong>if</strong> to talk about imaginary or unlikely situations in the present or future.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>If</strong> + past simple, + would + base verb
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> you were real, I <strong>would adopt</strong> you as my son.</div>
+                            <div class="example-translation">如果你是真实的，我会收养你作为我的儿子。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> I won the lottery, I <strong>would buy</strong> a big house.</div>
+                            <div class="example-translation">如果我中了彩票，我会买一栋大房子。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>If</strong> she were here, she <strong>would help</strong> us.</div>
+                            <div class="example-translation">如果她在这里，她会帮助我们的。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "as + adjective + as" for comparison
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>as + adjective + as</strong> to say that two people or things are equal in some way.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            Subject 1 + <strong>as + adjective + as</strong> + Subject 2
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">Pinocchio was <strong>as neat as</strong> a pin.</div>
+                            <div class="example-translation">匹诺曹非常整洁。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">This film is <strong>as interesting as</strong> the one we saw last week.</div>
+                            <div class="example-translation">这部电影和我们上周看的那部一样有趣。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">He is <strong>as tall as</strong> his father.</div>
+                            <div class="example-translation">他和他的父亲一样高。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Complete the sentences with the correct form of the verbs or adjectives.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="exercise-text" id="unit4-exercise-text">
+                            1. If I __________ (be) a superhero, I __________ (help) people in need.<br><br>
+                            
+                            2. This comedy is __________ funny __________ that one. (comparison)<br><br>
+                            
+                            3. If she __________ (have) more time, she __________ (watch) more movies.<br><br>
+                            
+                            4. The action scene was __________ exciting __________ the chase scene.
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit4-word-options">
+                                <div class="word-option" data-word="were, would help">were, would help</div>
+                                <div class="word-option" data-word="as, as">as, as</div>
+                                <div class="word-option" data-word="had, would watch">had, would watch</div>
+                                <div class="word-option" data-word="so, that">so, that</div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit4-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit4-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit4-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select4"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select4">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 5 Content -->
+            <div class="unit-content" id="unit5-content">
+                <div class="section-title">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    Unit 5: The Land of Kangaroos - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Adjective + Preposition combinations
+                    </div>
+                    
+                    <div class="topic-description">
+                        Some adjectives are always followed by specific prepositions. These combinations have fixed meanings.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            Adjective + <strong>about</strong>/<strong>of</strong>/<strong>with</strong>/<strong>at</strong> + noun/pronoun
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">I am worried <strong>about</strong> the long flight.</div>
+                            <div class="example-translation">我担心长途飞行。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">She is afraid <strong>of</strong> flying.</div>
+                            <div class="example-translation">她害怕飞行。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">He is excited <strong>about</strong> the trip to Australia.</div>
+                            <div class="example-translation">他对去澳大利亚的旅行感到兴奋。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">They are satisfied <strong>with</strong> their hotel.</div>
+                            <div class="example-translation">他们对酒店感到满意。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "where" as a relative pronoun
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>where</strong> to add information about a place or location.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>Where</strong> → refers to places
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">This is the city <strong>where</strong> my father was born.</div>
+                            <div class="example-translation">这是我父亲出生的城市。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">Australia is a country <strong>where</strong> you can see kangaroos.</div>
+                            <div class="example-translation">澳大利亚是一个你可以看到袋鼠的国家。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">That's the hotel <strong>where</strong> we stayed last year.</div>
+                            <div class="example-translation">那是我们去年住过的酒店。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pronunciation-box">
+                    <div class="pronunciation-title">
+                        <i class="fas fa-volume-up"></i>
+                        Pronunciation: Pronouncing "where"
+                    </div>
+                    <div class="pronunciation-content">
+                        The word "where" is pronounced /weər/ in British English. Make sure to pronounce the "wh" sound properly.
+                        <br><br>
+                        <strong>Example:</strong> "where" sounds like "wear" but with a slight "h" sound at the beginning.
+                    </div>
+                    <button class="speak-btn" id="pronounce-where">
+                        <i class="fas fa-play"></i> Listen to pronunciation
+                    </button>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Choose the correct preposition or relative pronoun for each sentence.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="mcq-container">
+                            <!-- Question 1 -->
+                            <div class="mcq-question">1. I'm excited __________ our trip to Japan.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="1" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">about</div>
+                                </div>
+                                <div class="mcq-option" data-question="1" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">of</div>
+                                </div>
+                                <div class="mcq-option" data-question="1" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">with</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 2 -->
+                            <div class="mcq-question">2. Sydney is the city __________ the Opera House is located.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="2" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">who</div>
+                                </div>
+                                <div class="mcq-option" data-question="2" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">which</div>
+                                </div>
+                                <div class="mcq-option" data-question="2" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">where</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div class="mcq-question">3. She's interested __________ learning about different cultures.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="3" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">in</div>
+                                </div>
+                                <div class="mcq-option" data-question="3" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">about</div>
+                                </div>
+                                <div class="mcq-option" data-question="3" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">of</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 4 -->
+                            <div class="mcq-question">4. This is the beach __________ we swam with dolphins last summer.</div>
+                            <div class="mcq-options">
+                                <div class="mcq-option" data-question="4" data-option="A">
+                                    <div class="mcq-option-label">A</div>
+                                    <div class="mcq-option-text">who</div>
+                                </div>
+                                <div class="mcq-option" data-question="4" data-option="B">
+                                    <div class="mcq-option-label">B</div>
+                                    <div class="mcq-option-text">where</div>
+                                </div>
+                                <div class="mcq-option" data-question="4" data-option="C">
+                                    <div class="mcq-option-label">C</div>
+                                    <div class="mcq-option-text">which</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit5-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit5-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit5-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select5"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select5">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 6 Content -->
+            <div class="unit-content" id="unit6-content">
+                <div class="section-title">
+                    <i class="fas fa-globe-americas"></i>
+                    Unit 6: International Week - Grammar Focus
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "until" to talk about time
+                    </div>
+                    
+                    <div class="topic-description">
+                        Use <strong>until</strong> to talk about when something finishes or the point in time when something stops.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            Action/state continues + <strong>until</strong> + finishing point
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">Families make plenty of kimchi together <strong>until</strong> the weather gets too cold.</div>
+                            <div class="example-translation">家家户户一起制作大量的泡菜，直到天气变得太冷。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">We will stay here <strong>until</strong> the rain stops.</div>
+                            <div class="example-translation">我们会待在这里直到雨停。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence">Keep stirring the mixture <strong>until</strong> it becomes smooth.</div>
+                            <div class="example-translation">持续搅拌混合物直到它变得顺滑。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grammar-topic">
+                    <div class="topic-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Using "each", "both" and "several" to talk about amounts
+                    </div>
+                    
+                    <div class="topic-description">
+                        These words are used to talk about quantities of people or things in different ways.
+                    </div>
+                    
+                    <div class="grammar-rule">
+                        <div class="rule-title">
+                            <i class="fas fa-ruler"></i>
+                            Grammar Rule
+                        </div>
+                        <div class="rule-content">
+                            <strong>Each</strong> = every single one individually<br>
+                            <strong>Both</strong> = two things or people together<br>
+                            <strong>Several</strong> = more than two but not many
+                        </div>
+                    </div>
+                    
+                    <div class="example-container">
+                        <div class="example-title">
+                            <i class="fas fa-comment"></i>
+                            Examples
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Each</strong> dancer holds a pair of candles.</div>
+                            <div class="example-translation">每位舞者都拿着一对蜡烛。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Both</strong> students are from Japan.</div>
+                            <div class="example-translation">两个学生都来自日本。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Several</strong> countries participated in International Week.</div>
+                            <div class="example-translation">有几个国家参加了国际周活动。</div>
+                        </div>
+                        
+                        <div class="example-item">
+                            <div class="example-sentence"><strong>Each</strong> of the costumes represents a different culture.</div>
+                            <div class="example-translation">每套服装都代表一种不同的文化。</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Grammar Practice
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Choose the correct word to complete each sentence.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="exercise-text" id="unit6-exercise-text">
+                            1. __________ student in our class prepared a dish from their country.<br><br>
+                            
+                            2. The festival continues __________ midnight.<br><br>
+                            
+                            3. __________ of my friends, Anna and Ben, are from Italy.<br><br>
+                            
+                            4. We visited __________ countries during our European tour.
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit6-word-options">
+                                <div class="word-option" data-word="Each">Each</div>
+                                <div class="word-option" data-word="until">until</div>
+                                <div class="word-option" data-word="Both">Both</div>
+                                <div class="word-option" data-word="Several">Several</div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit6-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit6-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit6-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select6"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select6">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text">
+                Oxford English 6A - Grammar Learning Platform
+            </div>
+            <div class="footer-text" style="margin-top: 10px; font-size: 14px;">
+                Based on Oxford Living English 6A syllabus | © 2023 Oxford University Press
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Grammar data based on the PDF content
+        const grammarUnits = [
+            { 
+                id: 1, 
+                title: "For a Good Cause", 
+                icon: "fas fa-hands-helping", 
+                topics: [
+                    {
+                        title: "Using 'so many' and 'so much'",
+                        description: "Use so many and so much to express degree or quantity.",
+                        rule: "So many + countable plural noun<br>So much + uncountable noun",
+                        examples: [
+                            "We have so many things for the fund-raising fair.",
+                            "We will raise so much money for the charity.",
+                            "There are so many volunteers helping today.",
+                            "She donated so much time to the community center."
+                        ],
+                        translations: [
+                            "我们为筹款活动准备了这么多东西。",
+                            "我们将为慈善机构筹集这么多钱。",
+                            "今天有这么多志愿者在帮忙。",
+                            "她为社区中心奉献了这么多时间。"
+                        ]
+                    },
+                    {
+                        title: "Using 'who' and 'which' as relative pronouns",
+                        description: "Use who to add information about people, and which to add information about things or animals.",
+                        rule: "Who → refers to people<br>Which → refers to things, animals, or ideas",
+                        examples: [
+                            "They are helping people who are homeless.",
+                            "HKGDA is a charity which focuses on providing guide dogs for the blind.",
+                            "My friend, who is a doctor, volunteers at the clinic every weekend.",
+                            "The organization, which was founded in 2010, has helped thousands of people."
+                        ],
+                        translations: [
+                            "他们正在帮助那些无家可归的人。",
+                            "香港导盲犬协会是一个专注于为盲人提供导盲犬的慈善机构。",
+                            "我的朋友是一名医生，他每周末都在诊所做志愿者。",
+                            "这个成立于2010年的组织已经帮助了数千人。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        question: "There are __________ volunteers at the charity event today.",
+                        options: ["so much", "so many"],
+                        correct: 1
+                    },
+                    {
+                        question: "We need __________ water for the marathon runners.",
+                        options: ["so much", "so many"],
+                        correct: 0
+                    },
+                    {
+                        question: "The man __________ organized this event is my teacher.",
+                        options: ["who", "which"],
+                        correct: 0
+                    },
+                    {
+                        question: "The charity __________ helps children in need is called 'Save the Children'.",
+                        options: ["who", "which"],
+                        correct: 1
+                    }
+                ]
+            },
+            { 
+                id: 2, 
+                title: "Lead a Helping Hand", 
+                icon: "fas fa-exclamation-triangle",
+                topics: [
+                    {
+                        title: "Conditional sentences with 'if'",
+                        description: "Use if to talk about possible results or consequences. This is called the first conditional.",
+                        rule: "If + present simple, + will + base verb",
+                        examples: [
+                            "If they drink dirty water, they will get sick easily.",
+                            "If it rains tomorrow, the charity walk will be cancelled.",
+                            "If we don't help them, they won't have enough food."
+                        ],
+                        translations: [
+                            "如果他们喝脏水，他们很容易生病。",
+                            "如果明天下雨，慈善步行活动将被取消。",
+                            "如果我们不帮助他们，他们将没有足够的食物。"
+                        ]
+                    },
+                    {
+                        title: "Using 'so that' to show purpose",
+                        description: "Use so that to explain the purpose or reason for doing something.",
+                        rule: "Action + so that + purpose/result",
+                        examples: [
+                            "We will buy bottled water so that they have clean water to drink.",
+                            "We are raising money so that we can build a new school.",
+                            "She studies hard so that she can become a doctor."
+                        ],
+                        translations: [
+                            "我们将购买瓶装水，这样他们就有干净的水可以喝。",
+                            "我们正在筹款，以便我们可以建一所新学校。",
+                            "她努力学习，以便能成为一名医生。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        type: "fill-blanks",
+                        text: "1. __________ there is an earthquake, the buildings might collapse. 2. We are collecting clothes __________ the victims have something to wear. 3. __________ you see someone in trouble, you should offer help. 4. They are building stronger houses __________ they can survive the next typhoon.",
+                        answers: ["If", "so that", "If", "so that"]
+                    }
+                ]
+            },
+            { 
+                id: 3, 
+                title: "Junior Super Chef", 
+                icon: "fas fa-utensils",
+                topics: [
+                    {
+                        title: "Using 'although' for contrast",
+                        description: "Use although to link two contrasting ideas. It shows a surprising or unexpected result.",
+                        rule: "Although + contrasting idea, + main idea<br>or<br>Main idea + although + contrasting idea",
+                        examples: [
+                            "Although Luke was well prepared, he felt nervous.",
+                            "I enjoy cooking, although I sometimes make mistakes.",
+                            "Although it was his first time, he cooked perfectly."
+                        ],
+                        translations: [
+                            "虽然卢克准备充分，但他感到紧张。",
+                            "我喜欢烹饪，虽然我有时会犯错。",
+                            "虽然这是他第一次，但他做得很好。"
+                        ]
+                    },
+                    {
+                        title: "Using 'after' and 'before' for sequence",
+                        description: "Use after and before to show the order of events or actions.",
+                        rule: "After + event/action, + next event/action<br>Before + event/action, + previous event/action",
+                        examples: [
+                            "After you add some flour, stir the mixture gently.",
+                            "Before you start cooking, wash your hands.",
+                            "Check the oven temperature before you put the cake in."
+                        ],
+                        translations: [
+                            "加入一些面粉后，轻轻搅拌混合物。",
+                            "开始烹饪前，请先洗手。",
+                            "把蛋糕放进烤箱之前，先检查一下温度。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        question: "__________ the recipe was difficult, she managed to make the cake perfectly.",
+                        options: ["Although", "Because", "So that"],
+                        correct: 0
+                    },
+                    {
+                        question: "__________ you chop the vegetables, heat the oil in the pan.",
+                        options: ["After", "Before", "Although"],
+                        correct: 0
+                    },
+                    {
+                        question: "Wash all the utensils __________ you start cooking.",
+                        options: ["after", "before", "although"],
+                        correct: 1
+                    },
+                    {
+                        question: "__________ he doesn't like vegetables, he eats them because they're healthy.",
+                        options: ["After", "Before", "Although"],
+                        correct: 2
+                    }
+                ]
+            },
+            { 
+                id: 4, 
+                title: "Film Magic", 
+                icon: "fas fa-film",
+                topics: [
+                    {
+                        title: "Second conditional with 'if'",
+                        description: "Use the second conditional with if to talk about imaginary or unlikely situations in the present or future.",
+                        rule: "If + past simple, + would + base verb",
+                        examples: [
+                            "If you were real, I would adopt you as my son.",
+                            "If I won the lottery, I would buy a big house.",
+                            "If she were here, she would help us."
+                        ],
+                        translations: [
+                            "如果你是真实的，我会收养你作为我的儿子。",
+                            "如果我中了彩票，我会买一栋大房子。",
+                            "如果她在这里，她会帮助我们的。"
+                        ]
+                    },
+                    {
+                        title: "Using 'as + adjective + as' for comparison",
+                        description: "Use as + adjective + as to say that two people or things are equal in some way.",
+                        rule: "Subject 1 + as + adjective + as + Subject 2",
+                        examples: [
+                            "Pinocchio was as neat as a pin.",
+                            "This film is as interesting as the one we saw last week.",
+                            "He is as tall as his father."
+                        ],
+                        translations: [
+                            "匹诺曹非常整洁。",
+                            "这部电影和我们上周看的那部一样有趣。",
+                            "他和他的父亲一样高。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        type: "fill-blanks",
+                        text: "1. If I __________ (be) a superhero, I __________ (help) people in need. 2. This comedy is __________ funny __________ that one. (comparison) 3. If she __________ (have) more time, she __________ (watch) more movies. 4. The action scene was __________ exciting __________ the chase scene.",
+                        answers: ["were, would help", "as, as", "had, would watch", "as, as"]
+                    }
+                ]
+            },
+            { 
+                id: 5, 
+                title: "The Land of Kangaroos", 
+                icon: "fas fa-suitcase-rolling",
+                topics: [
+                    {
+                        title: "Adjective + Preposition combinations",
+                        description: "Some adjectives are always followed by specific prepositions. These combinations have fixed meanings.",
+                        rule: "Adjective + about/of/with/at + noun/pronoun",
+                        examples: [
+                            "I am worried about the long flight.",
+                            "She is afraid of flying.",
+                            "He is excited about the trip to Australia.",
+                            "They are satisfied with their hotel."
+                        ],
+                        translations: [
+                            "我担心长途飞行。",
+                            "她害怕飞行。",
+                            "他对去澳大利亚的旅行感到兴奋。",
+                            "他们对酒店感到满意。"
+                        ]
+                    },
+                    {
+                        title: "Using 'where' as a relative pronoun",
+                        description: "Use where to add information about a place or location.",
+                        rule: "Where → refers to places",
+                        examples: [
+                            "This is the city where my father was born.",
+                            "Australia is a country where you can see kangaroos.",
+                            "That's the hotel where we stayed last year."
+                        ],
+                        translations: [
+                            "这是我父亲出生的城市。",
+                            "澳大利亚是一个你可以看到袋鼠的国家。",
+                            "那是我们去年住过的酒店。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        question: "I'm excited __________ our trip to Japan.",
+                        options: ["about", "of", "with"],
+                        correct: 0
+                    },
+                    {
+                        question: "Sydney is the city __________ the Opera House is located.",
+                        options: ["who", "which", "where"],
+                        correct: 2
+                    },
+                    {
+                        question: "She's interested __________ learning about different cultures.",
+                        options: ["in", "about", "of"],
+                        correct: 0
+                    },
+                    {
+                        question: "This is the beach __________ we swam with dolphins last summer.",
+                        options: ["who", "where", "which"],
+                        correct: 1
+                    }
+                ]
+            },
+            { 
+                id: 6, 
+                title: "International Week", 
+                icon: "fas fa-globe-americas",
+                topics: [
+                    {
+                        title: "Using 'until' to talk about time",
+                        description: "Use until to talk about when something finishes or the point in time when something stops.",
+                        rule: "Action/state continues + until + finishing point",
+                        examples: [
+                            "Families make plenty of kimchi together until the weather gets too cold.",
+                            "We will stay here until the rain stops.",
+                            "Keep stirring the mixture until it becomes smooth."
+                        ],
+                        translations: [
+                            "家家户户一起制作大量的泡菜，直到天气变得太冷。",
+                            "我们会待在这里直到雨停。",
+                            "持续搅拌混合物直到它变得顺滑。"
+                        ]
+                    },
+                    {
+                        title: "Using 'each', 'both' and 'several' to talk about amounts",
+                        description: "These words are used to talk about quantities of people or things in different ways.",
+                        rule: "Each = every single one individually<br>Both = two things or people together<br>Several = more than two but not many",
+                        examples: [
+                            "Each dancer holds a pair of candles.",
+                            "Both students are from Japan.",
+                            "Several countries participated in International Week.",
+                            "Each of the costumes represents a different culture."
+                        ],
+                        translations: [
+                            "每位舞者都拿着一对蜡烛。",
+                            "两个学生都来自日本。",
+                            "有几个国家参加了国际周活动。",
+                            "每套服装都代表一种不同的文化。"
+                        ]
+                    }
+                ],
+                exercises: [
+                    {
+                        type: "fill-blanks",
+                        text: "1. __________ student in our class prepared a dish from their country. 2. The festival continues __________ midnight. 3. __________ of my friends, Anna and Ben, are from Italy. 4. We visited __________ countries during our European tour.",
+                        answers: ["Each", "until", "Both", "Several"]
+                    }
+                ]
+            }
+        ];
+        
+        // Variables for speech synthesis
+        let voices = [];
+        let selectedVoice = null;
+        
+        // Load completion status from localStorage
+        let completedUnits = JSON.parse(localStorage.getItem('grammarUnitsCompleted')) || [];
+        
+        // Current active unit
+        let currentUnit = 1;
+        
+        // DOM elements
+        const unitButtons = document.querySelectorAll('.unit-btn');
+        const unitContents = document.querySelectorAll('.unit-content');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercentage = document.getElementById('progressPercentage');
+        
+        // Function to calculate and update progress
+        function updateProgress() {
+            const totalUnits = grammarUnits.length;
+            const completedCount = completedUnits.length;
+            const percentage = Math.round((completedCount / totalUnits) * 100);
+            
+            progressFill.style.width = `${percentage}%`;
+            progressPercentage.textContent = `${percentage}%`;
+            
+            // Save to localStorage
+            localStorage.setItem('grammarUnitsCompleted', JSON.stringify(completedUnits));
+            
+            // Update unit buttons styling
+            unitButtons.forEach(button => {
+                const unitId = parseInt(button.getAttribute('data-unit'));
+                button.classList.remove('completed', 'active');
+                
+                if (completedUnits.includes(unitId)) {
+                    button.classList.add('completed');
+                }
+                
+                if (unitId === currentUnit) {
+                    button.classList.add('active');
+                }
+            });
+        }
+        
+        // Load available voices
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            
+            // Update all voice selectors
+            document.querySelectorAll('select[id^="voice-select"]').forEach(select => {
+                select.innerHTML = '';
+                
+                // Add default option
+                const defaultOption = document.createElement('option');
+                defaultOption.value = 'default';
+                defaultOption.textContent = 'Default (British English)';
+                select.appendChild(defaultOption);
+                
+                // Filter for British English voices
+                const britishVoices = voices.filter(voice => 
+                    voice.lang.startsWith('en-GB') || 
+                    voice.name.toLowerCase().includes('british') ||
+                    voice.name.toLowerCase().includes('uk')
+                );
+                
+                // Add British voices first
+                if (britishVoices.length > 0) {
+                    const britishGroup = document.createElement('optgroup');
+                    britishGroup.label = 'British English Voices';
+                    
+                    britishVoices.forEach(voice => {
+                        const option = document.createElement('option');
+                        option.value = voice.name;
+                        option.textContent = `${voice.name} (${voice.lang})`;
+                        britishGroup.appendChild(option);
+                        
+                        // Set as default British voice
+                        if (!selectedVoice && voice.lang.startsWith('en-GB')) {
+                            selectedVoice = voice;
+                            option.selected = true;
+                        }
+                    });
+                    
+                    select.appendChild(britishGroup);
+                }
+                
+                // Add other English voices
+                const otherEnglishVoices = voices.filter(voice => 
+                    voice.lang.startsWith('en-') && 
+                    !voice.lang.startsWith('en-GB') &&
+                    !britishVoices.includes(voice)
+                );
+                
+                if (otherEnglishVoices.length > 0) {
+                    const otherGroup = document.createElement('optgroup');
+                    otherGroup.label = 'Other English Voices';
+                    
+                    otherEnglishVoices.forEach(voice => {
+                        const option = document.createElement('option');
+                        option.value = voice.name;
+                        option.textContent = `${voice.name} (${voice.lang})`;
+                        otherGroup.appendChild(option);
+                    });
+                    
+                    select.appendChild(otherGroup);
+                }
+            });
+        }
+        
+        // Speak a word using Web Speech API
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                } else {
+                    // Try to find a British English voice
+                    const britishVoice = voices.find(voice => 
+                        voice.lang.startsWith('en-GB') || 
+                        voice.name.toLowerCase().includes('british')
+                    );
+                    utterance.voice = britishVoice || voices[0];
+                }
+                
+                utterance.lang = 'en-GB';
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Function to load unit content
+        function loadUnit(unitId) {
+            currentUnit = unitId;
+            
+            // Hide all unit contents
+            unitContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show current unit content
+            document.getElementById(`unit${unitId}-content`).classList.add('active');
+            
+            // Load unit data
+            const unit = grammarUnits.find(u => u.id === unitId);
+            
+            // The content is already in HTML, just need to set up exercises
+            setupExercises(unitId, unit);
+            
+            // Update progress display
+            updateProgress();
+        }
+        
+        // Function to set up exercises
+        function setupExercises(unitId, unit) {
+            // Set up pronunciation buttons
+            const pronounceBtns = document.querySelectorAll(`#unit${unitId}-content .speak-btn`);
+            pronounceBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let textToSpeak = "";
+                    
+                    if (this.id === 'pronounce-weak-forms') {
+                        textToSpeak = "so that they have clean water to drink";
+                    } else if (this.id === 'pronounce-intonation') {
+                        textToSpeak = "Although Luke was well prepared, he felt nervous.";
+                    } else if (this.id === 'pronounce-where') {
+                        textToSpeak = "where my father was born";
+                    }
+                    
+                    if (textToSpeak) {
+                        speakWord(textToSpeak);
+                    }
+                });
+            });
+            
+            // Set up exercise based on type
+            if (unit.exercises[0].type === "fill-blanks") {
+                setupFillBlanksExercise(unitId, unit);
+            } else {
+                setupMCQExercise(unitId, unit);
+            }
+        }
+        
+        // Function to set up fill-in-the-blanks exercise
+        function setupFillBlanksExercise(unitId, unit) {
+            // Clear any existing event listeners and reset
+            const checkBtn = document.getElementById(`unit${unitId}-check-btn`);
+            const resetBtn = document.getElementById(`unit${unitId}-reset-btn`);
+            const resultDiv = document.getElementById(`unit${unitId}-result`);
+            
+            // Reset result display
+            resultDiv.className = 'exercise-result';
+            resultDiv.style.display = 'none';
+            resultDiv.textContent = '';
+            
+            // Add event listeners to word options
+            const wordOptions = document.querySelectorAll(`#unit${unitId}-word-options .word-option`);
+            
+            wordOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    if (this.classList.contains('used')) return;
+                    
+                    const word = this.getAttribute('data-word');
+                    const blanks = document.querySelectorAll(`#unit${unitId}-content .blank:not(.has-answer)`);
+                    
+                    if (blanks.length > 0) {
+                        const firstBlank = blanks[0];
+                        firstBlank.textContent = word;
+                        firstBlank.classList.add('has-answer');
+                        this.classList.add('used');
+                        
+                        // Check if all blanks are filled
+                        checkAllBlanksFilled(unitId);
+                    }
+                });
+            });
+            
+            // Reset exercise button
+            resetBtn.onclick = function() {
+                // Reset all blanks
+                document.querySelectorAll(`#unit${unitId}-content .blank`).forEach(blank => {
+                    blank.textContent = '__________';
+                    blank.classList.remove('has-answer');
+                });
+                
+                // Reset word options
+                wordOptions.forEach(option => {
+                    option.classList.remove('used');
+                });
+                
+                // Reset result display
+                resultDiv.className = 'exercise-result';
+                resultDiv.style.display = 'none';
+                resultDiv.textContent = '';
+            };
+            
+            // Check answers button
+            checkBtn.onclick = function() {
+                checkFillBlanksAnswers(unitId, unit);
+            };
+        }
+        
+        // Function to check if all blanks are filled
+        function checkAllBlanksFilled(unitId) {
+            const blanks = document.querySelectorAll(`#unit${unitId}-content .blank`);
+            const allFilled = Array.from(blanks).every(blank => blank.classList.contains('has-answer'));
+            
+            if (allFilled) {
+                // Auto-check answers after a delay
+                setTimeout(() => {
+                    const unit = grammarUnits.find(u => u.id === parseInt(unitId));
+                    checkFillBlanksAnswers(unitId, unit);
+                }, 500);
+            }
+        }
+        
+        // Function to check fill-in-the-blanks answers
+        function checkFillBlanksAnswers(unitId, unit) {
+            const blanks = document.querySelectorAll(`#unit${unitId}-content .blank`);
+            const resultDiv = document.getElementById(`unit${unitId}-result`);
+            
+            let correctCount = 0;
+            const totalBlanks = blanks.length;
+            
+            blanks.forEach((blank, index) => {
+                const userAnswer = blank.textContent.trim().toLowerCase();
+                const correctAnswer = unit.exercises[0].answers[index].toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    blank.style.color = '#2E7D32';
+                } else {
+                    blank.style.color = '#C62828';
+                    blank.innerHTML = `${blank.textContent} <span style="color: #666; font-size: 14px;">(Correct: ${unit.exercises[0].answers[index]})</span>`;
+                }
+            });
+            
+            // Show result
+            const percentage = Math.round((correctCount / totalBlanks) * 100);
+            resultDiv.className = 'exercise-result';
+            resultDiv.style.display = 'block';
+            
+            if (percentage === 100) {
+                resultDiv.classList.add('correct');
+                resultDiv.textContent = `Excellent! You got ${correctCount} out of ${totalBlanks} correct! (${percentage}%)`;
+                
+                // Mark unit as completed if not already
+                if (!completedUnits.includes(parseInt(unitId))) {
+                    completedUnits.push(parseInt(unitId));
+                    updateProgress();
+                }
+            } else if (percentage >= 70) {
+                resultDiv.classList.add('correct');
+                resultDiv.textContent = `Good job! You got ${correctCount} out of ${totalBlanks} correct! (${percentage}%)`;
+            } else {
+                resultDiv.classList.add('incorrect');
+                resultDiv.textContent = `You got ${correctCount} out of ${totalBlanks} correct. Try again! (${percentage}%)`;
+            }
+        }
+        
+        // Function to set up MCQ exercise
+        function setupMCQExercise(unitId, unit) {
+            // Set up check button
+            const checkBtn = document.getElementById(`unit${unitId}-check-btn`);
+            const resetBtn = document.getElementById(`unit${unitId}-reset-btn`);
+            const resultDiv = document.getElementById(`unit${unitId}-result`);
+            
+            // Add event listeners to MCQ options
+            document.querySelectorAll(`#unit${unitId}-content .mcq-option`).forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionNum = this.getAttribute('data-question');
+                    
+                    // Remove selected class from all options in this question
+                    const allOptions = document.querySelectorAll(`#unit${unitId}-content .mcq-option[data-question="${questionNum}"]`);
+                    allOptions.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Check answers button
+            checkBtn.onclick = function() {
+                let correctCount = 0;
+                const totalQuestions = unit.exercises.length;
+                
+                // Check each question
+                unit.exercises.forEach((exercise, index) => {
+                    const questionNum = index + 1;
+                    const selectedOption = document.querySelector(`#unit${unitId}-content .mcq-option[data-question="${questionNum}"].selected`);
+                    
+                    if (selectedOption) {
+                        const selectedIndex = selectedOption.getAttribute('data-option');
+                        const correctIndex = String.fromCharCode(65 + exercise.correct); // Convert to A, B, C
+                        
+                        // Mark correct/incorrect
+                        const allOptions = document.querySelectorAll(`#unit${unitId}-content .mcq-option[data-question="${questionNum}"]`);
+                        
+                        allOptions.forEach(opt => {
+                            const optIndex = opt.getAttribute('data-option');
+                            
+                            if (optIndex === correctIndex) {
+                                opt.classList.add('correct');
+                            } else if (optIndex === selectedIndex && optIndex !== correctIndex) {
+                                opt.classList.add('incorrect');
+                            }
+                        });
+                        
+                        if (selectedIndex === correctIndex) {
+                            correctCount++;
+                        }
+                    }
+                });
+                
+                // Show result
+                const percentage = Math.round((correctCount / totalQuestions) * 100);
+                resultDiv.className = 'exercise-result';
+                resultDiv.style.display = 'block';
+                
+                if (correctCount === totalQuestions) {
+                    resultDiv.classList.add('correct');
+                    resultDiv.textContent = `Excellent! You got ${correctCount} out of ${totalQuestions} correct!`;
+                    
+                    // Mark unit as completed if not already
+                    if (!completedUnits.includes(parseInt(unitId))) {
+                        completedUnits.push(parseInt(unitId));
+                        updateProgress();
+                    }
+                } else if (percentage >= 70) {
+                    resultDiv.classList.add('correct');
+                    resultDiv.textContent = `Good job! You got ${correctCount} out of ${totalQuestions} correct.`;
+                } else {
+                    resultDiv.classList.add('incorrect');
+                    resultDiv.textContent = `You got ${correctCount} out of ${totalQuestions} correct. Try again!`;
+                }
+            };
+            
+            // Reset exercise button
+            resetBtn.onclick = function() {
+                // Reset all options
+                document.querySelectorAll(`#unit${unitId}-content .mcq-option`).forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                // Reset result display
+                resultDiv.className = 'exercise-result';
+                resultDiv.style.display = 'none';
+                resultDiv.textContent = '';
+            };
+        }
+        
+        // Initialize the page
+        function initApp() {
+            // Set up unit button click events
+            unitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const unitId = parseInt(this.getAttribute('data-unit'));
+                    loadUnit(unitId);
+                });
+            });
+            
+            // Load voices when they become available
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+            
+            // Load voices immediately if they're already available
+            if (speechSynthesis.getVoices().length > 0) {
+                loadVoices();
+            }
+            
+            // Set up voice selector event listeners (all selectors sync to same selection)
+            document.querySelectorAll('select[id^="voice-select"]').forEach(select => {
+                select.addEventListener('change', function() {
+                    const voiceName = this.value;
+                    
+                    if (voiceName === 'default') {
+                        // Try to find a British English voice
+                        selectedVoice = voices.find(voice => 
+                            voice.lang.startsWith('en-GB') || 
+                            voice.name.toLowerCase().includes('british')
+                        ) || voices[0];
+                    } else {
+                        selectedVoice = voices.find(voice => voice.name === voiceName);
+                    }
+                    
+                    // Sync all other voice selectors
+                    document.querySelectorAll('select[id^="voice-select"]').forEach(otherSelect => {
+                        if (otherSelect !== this) {
+                            otherSelect.value = this.value;
+                        }
+                    });
+                });
+            });
+            
+            // Load first unit by default
+            loadUnit(1);
+        }
+        
+        // Initialize the app when page loads
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
