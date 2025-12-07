@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Learning Progress Tracker</title>
+    <title>ESL MASTER - Vocabulary Learning</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,97 +13,81 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary-color: #1cb0f6;
+            --secondary-color: #58cc02;
+            --accent-color: #ff9f00;
+            --danger-color: #ff6b6b;
+            --light-color: #FFFFFF;
+            --dark-color: #333333;
+            --gray-color: #F5F5F5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --card-bg: #FFFFFF;
+        }
+        
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6ecf5 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 20px;
         }
         
         .container {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            width: 100%;
-        }
-        
-        .header h1 {
-            color: #1cb0f6;
-            font-weight: 700;
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .header p {
-            color: #666;
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        
-        .section-container {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-            width: 100%;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .section-number {
-            background: linear-gradient(135deg, #1cb0f6 0%, #0d8ccb 100%);
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0d8ccb 100%);
             color: white;
-            width: 60px;
-            height: 60px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            background-color: white;
+            color: var(--primary-color);
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 36px;
             font-weight: bold;
-            font-size: 26px;
-            margin-right: 25px;
-            box-shadow: 0 6px 15px rgba(28, 176, 246, 0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
-        .section-info {
-            flex: 1;
+        .logo-text {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
         
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 8px;
+        .logo-text span {
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .section-subtitle {
-            color: #666;
+        .tagline {
             font-size: 18px;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: 500;
         }
         
         .progress-summary {
@@ -113,13 +97,13 @@
             background: linear-gradient(135deg, #f0f7ff 0%, #e3eeff 100%);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 40px;
-            border-left: 6px solid #1cb0f6;
+            margin: 25px 30px;
+            border-left: 6px solid var(--primary-color);
         }
         
         .progress-text h3 {
-            color: #1cb0f6;
-            font-size: 20px;
+            color: var(--primary-color);
+            font-size: 22px;
             margin-bottom: 10px;
         }
         
@@ -133,9 +117,9 @@
         }
         
         .progress-percentage {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 800;
-            color: #58cc02;
+            color: var(--secondary-color);
             line-height: 1;
             text-shadow: 0 2px 4px rgba(88, 204, 2, 0.2);
         }
@@ -159,352 +143,481 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #58cc02 0%, #7ee043 100%);
+            background: linear-gradient(90deg, var(--secondary-color) 0%, #7ee043 100%);
             border-radius: 6px;
             transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 2px 8px rgba(88, 204, 2, 0.3);
         }
         
         .units-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0 30px 30px;
+            flex-wrap: wrap;
         }
         
-        .unit {
+        .unit-btn {
+            background: linear-gradient(135deg, #e3eeff 0%, #d6e4ff 100%);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 20px;
-            border-radius: 20px;
-            background-color: white;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 2px solid #f1f3f4;
-            position: relative;
-            overflow: hidden;
+            gap: 10px;
+            min-width: 140px;
+            box-shadow: var(--shadow);
         }
         
-        .unit:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
-            border-color: #1cb0f6;
+        .unit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .unit.completed {
-            background: linear-gradient(135deg, #f8fdf3 0%, #f0f9eb 100%);
-            border-color: #d4edda;
+        .unit-btn.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0d8ccb 100%);
+            color: white;
+            box-shadow: 0 6px 18px rgba(28, 176, 246, 0.3);
+        }
+        
+        .unit-btn.completed {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #4db500 100%);
+            color: white;
         }
         
         .unit-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            margin-bottom: 25px;
-            position: relative;
-            transition: all 0.4s ease;
-            z-index: 1;
-        }
-        
-        .unit-icon.green {
-            background: linear-gradient(135deg, #58cc02 0%, #7ee043 100%);
-            color: white;
-            box-shadow: 0 8px 20px rgba(88, 204, 2, 0.3);
-        }
-        
-        .unit-icon.grey {
-            background: linear-gradient(135deg, #e9ecef 0%, #dde1e6 100%);
-            color: #adb5bd;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .unit-icon.green::after {
-            content: "";
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border-radius: 50%;
-            border: 3px solid #58cc02;
-            opacity: 0.3;
-            animation: pulse 2s infinite;
-        }
-        
-        .unit.completed .unit-icon.grey {
-            background: linear-gradient(135deg, #e9ecef 0%, #d1d7de 100%);
-            color: #6c757d;
-        }
-        
-        .unit-title {
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 12px;
-            font-size: 20px;
-            color: #333;
-            line-height: 1.3;
-        }
-        
-        .unit-description {
-            text-align: center;
-            color: #666;
-            font-size: 15px;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            min-height: 40px;
-        }
-        
-        .unit-status {
-            font-size: 15px;
-            font-weight: 700;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-        }
-        
-        .unit:not(.completed) .unit-status {
-            color: #58cc02;
-            background-color: rgba(88, 204, 2, 0.12);
-        }
-        
-        .unit.completed .unit-status {
-            color: #6c757d;
-            background-color: rgba(108, 117, 125, 0.1);
-        }
-        
-        .unit-number {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #f1f3f4;
-            color: #6c757d;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 16px;
-            z-index: 2;
-        }
-        
-        .unit.completed .unit-number {
-            background-color: #e9ecef;
-            color: #495057;
-        }
-        
-        .unit-completion-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #58cc02;
-            color: white;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-        }
-        
-        .unit.completed .unit-completion-badge {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .unit-vocab {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #eee;
-            width: 100%;
-            text-align: left;
-        }
-        
-        .unit-vocab-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1cb0f6;
-            margin-bottom: 8px;
-        }
-        
-        .unit-vocab-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .vocab-item {
-            background: #f5f5f5;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 13px;
-            color: #555;
-        }
-        
-        .instructions {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 50px;
-            border-left: 6px solid #1cb0f6;
-            width: 100%;
-        }
-        
-        .instructions h3 {
-            color: #1cb0f6;
-            margin-bottom: 20px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .instructions h3 i {
-            font-size: 24px;
-        }
-        
-        .instructions p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .legend-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-        }
-        
-        .legend-icon.green {
-            background: linear-gradient(135deg, #58cc02 0%, #7ee043 100%);
-        }
-        
-        .legend-icon.grey {
-            background: linear-gradient(135deg, #e9ecef 0%, #d1d7de 100%);
-        }
-        
-        .legend-text {
-            color: #666;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.08); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 0.3; }
-        }
-        
-        @keyframes celebrate {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .celebration {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .celebration-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            animation: celebrate 0.5s ease;
-        }
-        
-        .celebration-content i {
-            font-size: 60px;
-            color: #58cc02;
-            margin-bottom: 20px;
-        }
-        
-        .celebration-content h2 {
-            color: #333;
-            margin-bottom: 15px;
             font-size: 32px;
         }
         
-        .celebration-content p {
-            color: #666;
-            font-size: 18px;
-            margin-bottom: 25px;
-            line-height: 1.5;
+        .main-content {
+            padding: 0 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
         
-        .close-celebration {
-            background: #1cb0f6;
+        .content-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        .section-title i {
+            color: var(--primary-color);
+        }
+        
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .word-item {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .word-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .word-text {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .word-meaning {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-style: italic;
+            flex-grow: 1;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .word-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .speak-btn {
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 15px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .speak-btn:hover {
+            background-color: #0D8BF0;
+            transform: translateY(-2px);
+        }
+        
+        .speak-btn.sentence-btn {
+            background-color: var(--accent-color);
+        }
+        
+        .speak-btn.sentence-btn:hover {
+            background-color: #e68a00;
+        }
+        
+        .exercise-container {
+            margin-top: 30px;
+        }
+        
+        .exercise-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .exercise-instruction {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: var(--border-radius);
+            line-height: 1.6;
+        }
+        
+        .exercise-content {
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .exercise-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .blank {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 2px dashed var(--accent-color);
+            margin: 0 8px;
+            text-align: center;
+            color: transparent;
+            position: relative;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .blank.has-answer {
+            color: var(--dark-color);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .blank-number {
+            position: absolute;
+            top: -25px;
+            left: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .word-options-container {
+            margin-top: 30px;
+        }
+        
+        .word-options-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .word-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .word-option {
+            background-color: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 25px;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--secondary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .word-option:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .word-option.used {
+            opacity: 0.4;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .word-option.used:hover {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .exercise-result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            display: none;
+        }
+        
+        .exercise-result.correct {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            display: block;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .exercise-result.incorrect {
+            background-color: #FFEBEE;
+            color: #C62828;
+            display: block;
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .exercise-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .exercise-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0d8ccb 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
             font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+        }
+        
+        .exercise-btn.reset-btn {
+            background: linear-gradient(135deg, var(--danger-color) 0%, #ff5252 100%);
+        }
+        
+        .voice-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #E3F2FD;
+            border-radius: var(--border-radius);
+            flex-wrap: wrap;
+        }
+        
+        .voice-selector label {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .voice-selector select {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #BBDEFB;
+            background-color: white;
+            font-size: 14px;
+            min-width: 250px;
+            color: var(--dark-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            margin-top: 30px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+        
+        .footer-text {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Unit-specific exercise styling */
+        .poem-exercise {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            line-height: 2;
+            padding: 25px;
+            background-color: #fdf6e3;
+            border-radius: var(--border-radius);
+            border-left: 5px solid #ff9f00;
+        }
+        
+        /* Riddle styles - FIXED */
+        .riddle-container {
+            background-color: #f0f7ff;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
         
-        .close-celebration:hover {
-            background: #0d8ccb;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(28, 176, 246, 0.3);
+        .riddle {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .riddle-answer {
+            display: none;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            border-left: 4px solid var(--secondary-color);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .riddle-answer.show {
+            display: block;
+        }
+        
+        .riddle-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .riddle-btn:hover {
+            background-color: #0d8ccb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .word-list {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .units-container {
+                gap: 10px;
+            }
+            
+            .unit-btn {
+                min-width: 120px;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 768px) {
-            .units-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            header {
+                padding: 20px;
             }
             
-            .section-container {
-                padding: 20px;
+            .logo-text {
+                font-size: 32px;
             }
             
             .progress-summary {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 20px;
+                margin: 20px;
             }
             
             .progress-stats {
@@ -512,63 +625,84 @@
                 width: 100%;
             }
             
-            .header h1 {
-                font-size: 26px;
+            .units-container {
+                padding: 0 20px 20px;
             }
             
-            .section-title {
-                font-size: 24px;
+            .unit-btn {
+                min-width: 100px;
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            
+            .main-content {
+                padding: 0 20px 20px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .word-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .word-options {
+                justify-content: center;
+            }
+            
+            .voice-selector {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .voice-selector select {
+                width: 100%;
             }
         }
         
         @media (max-width: 480px) {
-            .header h1 {
-                flex-direction: column;
-                gap: 10px;
+            .logo-text {
+                font-size: 24px;
             }
             
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
+            .unit-btn {
+                min-width: 80px;
+                padding: 10px;
+                font-size: 14px;
             }
             
-            .section-number {
-                margin-right: 0;
+            .word-text {
+                font-size: 18px;
+            }
+        
+            .section-title {
+                font-size: 22px;
             }
             
-            .unit-icon {
-                width: 85px;
-                height: 85px;
-                font-size: 30px;
+            .exercise-text {
+                font-size: 16px;
             }
             
-            .vocab-item {
-                font-size: 12px;
-                padding: 3px 8px;
+            .blank {
+                min-width: 100px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-language"></i> Language Learning Progress</h1>
-       </div>
-        
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-number">1-6</div>
-                <div class="section-info">
-                    <div class="section-title">Vocabulary Units Progress</div>
-                    <div class="section-subtitle">Master essential vocabulary across 6 different topics</div>
-                </div>
+        <header>
+            <div class="logo">
+                <div class="logo-icon">ESL</div>
+                <div class="logo-text">ESL <span>MASTER</span></div>
+                <div class="tagline">Master English vocabulary through interactive learning</div>
             </div>
             
             <div class="progress-summary">
                 <div class="progress-text">
                     <h3>Your Learning Progress</h3>
-                    <p>Click on any unit to mark it as complete. Your progress is automatically saved.</p>
+                    <p>Complete units to expand your vocabulary skills</p>
                     <div class="progress-bar-container">
                         <div class="progress-bar">
                             <div class="progress-fill" id="progressFill"></div>
@@ -580,96 +714,711 @@
                     <div class="progress-label">Completed</div>
                 </div>
             </div>
+        </header>
+        
+        <div class="units-container" id="unitsContainer">
+            <button class="unit-btn" data-unit="1">
+                <i class="fas fa-hands-helping unit-icon"></i>
+                <span>Unit 1</span>
+            </button>
+            <button class="unit-btn" data-unit="2">
+                <i class="fas fa-exclamation-triangle unit-icon"></i>
+                <span>Unit 2</span>
+            </button>
+            <button class="unit-btn" data-unit="3">
+                <i class="fas fa-utensils unit-icon"></i>
+                <span>Unit 3</span>
+            </button>
+            <button class="unit-btn" data-unit="4">
+                <i class="fas fa-film unit-icon"></i>
+                <span>Unit 4</span>
+            </button>
+            <button class="unit-btn" data-unit="5">
+                <i class="fas fa-suitcase-rolling unit-icon"></i>
+                <span>Unit 5</span>
+            </button>
+            <button class="unit-btn" data-unit="6">
+                <i class="fas fa-globe-americas unit-icon"></i>
+                <span>Unit 6</span>
+            </button>
+        </div>
+        
+        <div class="main-content">
+            <!-- Unit 1 Content -->
+            <div class="content-section unit-content" id="unit1-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-hands-helping"></i>
+                    Unit 1: Charity Work
+                </div>
+                
+                <div class="word-list" id="unit1-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Complete the Poster
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Alex is making a poster about different ways of helping others. Complete the poster by filling in the blanks with the correct words from the word list.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="exercise-text" id="unit1-exercise-text">
+                            Would you like to give a helping hand? There are a lot of ways to do this!<br><br>
+                            
+                            Are you good at talking to people? You can <span class="blank" id="blank1-1">__________<span class="blank-number">1</span></span> and spend some time with the old people there.<br><br>
+                            
+                            Do you love animals? <span class="blank" id="blank1-2">__________<span class="blank-number">2</span></span> from an animal charity and give it a warm and safe home.<br><br>
+                            
+                            Do you enjoy walking? You can <span class="blank" id="blank1-3">__________<span class="blank-number">3</span></span> to raise money.<br><br>
+                            
+                            Do you want to have fun and help people at the same time? You can <span class="blank" id="blank1-4">__________<span class="blank-number">4</span></span>.<br><br>
+                            
+                            Some charities hold a flag day every year. You can be a volunteer to help <span class="blank" id="blank1-5">__________<span class="blank-number">5</span></span>.<br><br>
+                            
+                            Other charities <span class="blank" id="blank1-6">__________<span class="blank-number">6</span></span> to raise money. You can buy some to help others. You may even have a chance to win something! You can also <span class="blank" id="blank1-7">__________<span class="blank-number">7</span></span> to your favourite charity directly.<br><br>
+                            
+                            Even just a few dollars can make a difference! There are many different charities which need your help. Reach out and try to <span class="blank" id="blank1-8">__________<span class="blank-number">8</span></span> for them.<br><br>
+                            
+                            You will feel very happy when you help people in need!
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit1-word-options">
+                                <!-- Word options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit1-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit1-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit1-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
             
-            <div class="units-container" id="unitsContainer">
-                <!-- Units will be populated by JavaScript -->
+            <!-- Unit 2 Content -->
+            <div class="content-section unit-content" id="unit2-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Unit 2: Natural Disasters
+                </div>
+                
+                <div class="word-list" id="unit2-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Complete the Web Page
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Helen is reading a web page about what happens in natural disasters. Complete the web page by filling in the blanks with the correct words from the word list.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="exercise-text" id="unit2-exercise-text">
+                            <strong>Natural Disasters</strong><br><br>
+                            
+                            - What happens in <span class="blank" id="blank2-1">__________<span class="blank-number">1</span></span>?<br>
+                            The ground becomes dry when there is no rain for a long time. This can <span class="blank" id="blank2-2">__________<span class="blank-number">2</span></span> because plants need water to grow.<br><br>
+                            
+                            - What happens in <span class="blank" id="blank2-3">__________<span class="blank-number">3</span></span>?<br>
+                            It occurs when the earth suddenly starts shaking strongly. It can <span class="blank" id="blank2-4">__________<span class="blank-number">4</span></span> and make them fall down in just a few seconds. This can <span class="blank" id="blank2-5">__________<span class="blank-number">5</span></span> if they do not get outside in time.<br><br>
+                            
+                            - What happens in <span class="blank" id="blank2-6">__________<span class="blank-number">6</span></span>?<br>
+                            It often happens after earthquakes or other earth movements under the sea. It brings huge sea waves to the land and can cause damages.<br><br>
+                            
+                            - What happens in <span class="blank" id="blank2-7">__________<span class="blank-number">7</span></span>?<br>
+                            Rocks and earth slide down a hill in this natural disaster. The falling rocks can <span class="blank" id="blank2-8">__________<span class="blank-number">8</span></span> and cause traffic jams.<br><br>
+                            
+                            - What happens in <span class="blank" id="blank2-9">__________<span class="blank-number">9</span></span>?<br>
+                            This is a storm with strong winds. It can <span class="blank" id="blank2-10">__________<span class="blank-number">10</span></span>, so people need to put tapes on them. It can also blow down trees.
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit2-word-options">
+                                <!-- Word options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit2-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit2-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit2-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select2"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select2">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 3 Content -->
+            <div class="content-section unit-content" id="unit3-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-utensils"></i>
+                    Unit 3: Cooking Actions
+                </div>
+                
+                <div class="word-list" id="unit3-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Complete the Poem
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Sandy is writing a poem. Complete the poem by filling in the blanks with the correct cooking verbs from the word list.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="poem-exercise" id="unit3-exercise-text">
+                            <strong>I'm a Junior Super Chef!</strong><br>
+                            <em>by Sandy Chung</em><br><br>
+                            
+                            I can <span class="blank" id="blank3-1">__________<span class="blank-number">1</span></span> eggs in a bowl to make breakfast for you.<br>
+                            I know how to <span class="blank" id="blank3-2">__________<span class="blank-number">2</span></span> flour and water to make bread too!<br>
+                            I can use a knife to <span class="blank" id="blank3-3">__________<span class="blank-number">3</span></span> some meat,<br>
+                            And <span class="blank" id="blank3-4">__________<span class="blank-number">4</span></span> it in a bit of oil until it's ready to eat.<br><br>
+                            
+                            I can <span class="blank" id="blank3-5">__________<span class="blank-number">5</span></span> a fish with ginger and lime.<br>
+                            This easy dish can be done in no time.<br>
+                            I use my hands to <span class="blank" id="blank3-6">__________<span class="blank-number">6</span></span> the skins off the garlic quickly,<br>
+                            And arrange all ingredients on the plate nicely.<br><br>
+                            
+                            I can <span class="blank" id="blank3-7">__________<span class="blank-number">7</span></span> water to cook pasta for my family.<br>
+                            When it's cooking, I <span class="blank" id="blank3-8">__________<span class="blank-number">8</span></span> the pasta sauce carefully.<br>
+                            I put everything together and <span class="blank" id="blank3-9">__________<span class="blank-number">9</span></span> some cheese on top.<br>
+                            When my family start eating it, they aren't able to stop!<br><br>
+                            
+                            Watch me <span class="blank" id="blank3-10">__________<span class="blank-number">10</span></span> mixture into a cake tin to make a cake,<br>
+                            And then carefully put it into the oven to <span class="blank" id="blank3-11">__________<span class="blank-number">11</span></span>.<br>
+                            When it's cool, I <span class="blank" id="blank3-12">__________<span class="blank-number">12</span></span> chocolate icing on it nicely.<br>
+                            It's so yummy, but don't eat it too quickly!
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit3-word-options">
+                                <!-- Word options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit3-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit3-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit3-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select3"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select3">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 4 Content -->
+            <div class="content-section unit-content" id="unit4-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-film"></i>
+                    Unit 4: Films & Characters
+                </div>
+                
+                <div class="word-list" id="unit4-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Crossword Puzzle
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Peter is doing a crossword puzzle in a film magazine. Complete the crossword puzzle with the correct film types and character adjectives.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit4-word-options">
+                                <!-- Word options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit4-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit4-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit4-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select4"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select4">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 5 Content -->
+            <div class="content-section unit-content" id="unit5-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    Unit 5: Travelling Activities
+                </div>
+                
+                <div class="word-list" id="unit5-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Complete the Poem
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        Sophie's class is writing a poem about travelling. Complete the poem by filling in the blanks with the correct travelling activities from the word list.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <div class="poem-exercise" id="unit5-exercise-text">
+                            <strong>We want to go travelling!</strong><br><br>
+                            
+                            I want to go to Australia and <span class="blank" id="blank5-1">__________<span class="blank-number">1</span></span><br>
+                            I'll be very careful and keep my hand flat.<br>
+                            It may bite my finger and I don't want that!<br><br>
+                            
+                            I'd like to <span class="blank" id="blank5-2">__________<span class="blank-number">2</span></span> around the world.<br>
+                            I want to go to an interesting place and learn all about it.<br>
+                            I always take lots of photos so that I can remember my visit.<br><br>
+                            
+                            I hope I can <span class="blank" id="blank5-3">__________<span class="blank-number">3</span></span><br>
+                            Travelling on the ocean on a great big ship<br>
+                            Is my idea of the perfect trip!<br><br>
+                            
+                            I think it's fun to <span class="blank" id="blank5-4">__________<span class="blank-number">4</span></span><br>
+                            Feeling the wind in my hair and water splashing in my face.<br>
+                            Don't worry, Mum. I'll wear a life jacket just in case!<br><br>
+                            
+                            My dream is to <span class="blank" id="blank5-5">__________<span class="blank-number">5</span></span> one day.<br>
+                            I'll look at the trees reaching into the sky,<br>
+                            Listen to the birds and maybe see an amazing butterfly.<br><br>
+                            
+                            When I go travelling, I always want to <span class="blank" id="blank5-6">__________<span class="blank-number">6</span></span><br>
+                            Learning about kings and queens is interesting for me!<br>
+                            There's usually a cafe where I can have cakes and tea.<br><br>
+                            
+                            Oh, how I wish I could <span class="blank" id="blank5-7">__________<span class="blank-number">7</span></span> in winter.<br>
+                            It was so much fun going skiing last year.<br>
+                            I'm eager to learn a new sport this year.
+                        </div>
+                        
+                        <div class="word-options-container">
+                            <div class="word-options-title">
+                                <i class="fas fa-list"></i> Word Options:
+                            </div>
+                            <div class="word-options" id="unit5-word-options">
+                                <!-- Word options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit5-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit5-check-btn">
+                                <i class="fas fa-check-circle"></i> Check Answers
+                            </button>
+                            <button class="exercise-btn reset-btn" id="unit5-reset-btn">
+                                <i class="fas fa-redo"></i> Reset Exercise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select5"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select5">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Unit 6 Content - FIXED RIDDLE EXERCISE -->
+            <div class="content-section unit-content" id="unit6-content" style="display: none;">
+                <div class="section-title">
+                    <i class="fas fa-globe-americas"></i>
+                    Unit 6: Cultural Activities
+                </div>
+                
+                <div class="word-list" id="unit6-word-list">
+                    <!-- Word list will be populated by JavaScript -->
+                </div>
+                
+                <div class="exercise-container">
+                    <div class="exercise-title">
+                        <i class="fas fa-edit"></i>
+                        Exercise: Solve the Riddles
+                    </div>
+                    
+                    <div class="exercise-instruction">
+                        It is International Week at school. Mike is solving the riddles on a board display. Click "Show Answer" to reveal the answers to each riddle.
+                    </div>
+                    
+                    <div class="exercise-content">
+                        <!-- Riddle 1 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                1. I'm a country in Asia. People often relate me to sushi and origami. Which country am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle1-answer">Japan</div>
+                            <button class="riddle-btn" data-riddle="1">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 2 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                2. I'm an energetic sport on ice. Players chase one another in the ice rink. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle2-answer">Ice hockey</div>
+                            <button class="riddle-btn" data-riddle="2">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 3 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                3. I'm a long dress which hugs the body. Ladies in me always walk very elegantly. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle3-answer">Cheongsam</div>
+                            <button class="riddle-btn" data-riddle="3">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 4 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                4. I look like a skirt, but I'm not for a lady. I'm often made of woollen cloth with a pretty pattern. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle4-answer">A kilt</div>
+                            <button class="riddle-btn" data-riddle="4">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 5 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                5. I'm sour, salty and spicy. Making me and eating me both make people happy. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle5-answer">Kimchi</div>
+                            <button class="riddle-btn" data-riddle="5">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 6 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                6. I make people in Venice look mysterious! Carnival-goers use me to make others curious. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle6-answer">A Venetian mask</div>
+                            <button class="riddle-btn" data-riddle="6">Show Answer</button>
+                        </div>
+                        
+                        <!-- Riddle 7 -->
+                        <div class="riddle-container">
+                            <div class="riddle">
+                                7. I'm a form of drama in China. Actors and actresses paint their faces before going on stage. What am I?
+                            </div>
+                            <div class="riddle-answer" id="riddle7-answer">A Chinese opera</div>
+                            <button class="riddle-btn" data-riddle="7">Show Answer</button>
+                        </div>
+                        
+                        <div class="exercise-result" id="unit6-result"></div>
+                        
+                        <div class="exercise-buttons">
+                            <button class="exercise-btn" id="unit6-check-btn">
+                                <i class="fas fa-check-circle"></i> Mark Unit Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="voice-selector">
+                    <label for="voice-select6"><i class="fas fa-volume-up"></i> Voice:</label>
+                    <select id="voice-select6">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
             </div>
         </div>
         
-        <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> How This Progress Tracker Works</h3>
-            <p><strong>Green icons</strong> represent units that are <strong>not yet completed</strong>. Click on a unit to mark it as completed.</p>
-            <p><strong>Grey icons with checkmarks</strong> represent units that are <strong>already completed</strong>. Click on a completed unit to mark it as incomplete again.</p>
-            <p>Your progress is automatically saved in your browser. Complete all 6 units to finish this learning module!</p>
-            
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-icon green"></div>
-                    <div class="legend-text">Unit to complete</div>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-icon grey"></div>
-                    <div class="legend-text">Unit completed</div>
-                </div>
+        <div class="footer">
+            <div class="footer-text">
+                ESL MASTER - Interactive Vocabulary Learning Platform | Practice makes perfect!
             </div>
-        </div>
-    </div>
-    
-    <div class="celebration" id="celebration">
-        <div class="celebration-content">
-            <i class="fas fa-trophy"></i>
-            <h2>Congratulations!</h2>
-            <p>You've completed all 6 vocabulary units! You've mastered essential vocabulary across charity work, natural disasters, cooking, films, travel, and cultural activities.</p>
-            <button class="close-celebration" id="closeCelebration">Continue Learning</button>
         </div>
     </div>
 
     <script>
-        // Course units data based on the PDF content - Exactly 6 units
+        // Course units data based on the PDF content
         const courseUnits = [
             { 
                 id: 1, 
                 title: "Charity Work", 
                 icon: "fas fa-hands-helping", 
                 description: "Vocabulary for charitable activities and volunteer work",
-                vocab: ["adopt a pet", "be a volunteer", "donate money", "visit an elderly home", "organize charity sale", "prepare meals"]
+                words: [
+                    { word: "visit an elderly home", meaning: "Spend time with old people at a care facility." },
+                    { word: "adopt a pet", meaning: "Take an animal from a shelter and give it a home." },
+                    { word: "go on a walkathon", meaning: "Participate in a long walk to raise money for charity." },
+                    { word: "take part in a fund-raising fair", meaning: "Join an event that collects money for a good cause." },
+                    { word: "sell flags", meaning: "Help charities by selling flags on flag days." },
+                    { word: "sell raffle tickets", meaning: "Sell tickets for a lottery to raise money." },
+                    { word: "donate money", meaning: "Give money to help others or support a cause." },
+                    { word: "do voluntary work", meaning: "Work without payment to help people or organizations." }
+                ],
+                exercise: {
+                    type: "fill-blanks",
+                    text: "Would you like to give a helping hand? There are a lot of ways to do this! Are you good at talking to people? You can __________ and spend some time with the old people there. Do you love animals? __________ from an animal charity and give it a warm and safe home. Do you enjoy walking? You can __________ to raise money. Do you want to have fun and help people at the same time? You can __________. Some charities hold a flag day every year. You can be a volunteer to help __________. Other charities __________ to raise money. You can buy some to help others. You may even have a chance to win something! You can also __________ to your favourite charity directly. Even just a few dollars can make a difference! There are many different charities which need your help. Reach out and try to __________ for them. You will feel very happy when you help people in need!",
+                    answers: [
+                        "visit an elderly home",
+                        "Adopt a pet",
+                        "go on a walkathon",
+                        "take part in a fund-raising fair",
+                        "sell flags",
+                        "sell raffle tickets",
+                        "donate money",
+                        "do voluntary work"
+                    ]
+                }
             },
             { 
                 id: 2, 
                 title: "Natural Disasters", 
                 icon: "fas fa-exclamation-triangle", 
                 description: "Words for natural disasters and their effects",
-                vocab: ["earthquake", "flood", "typhoon", "tsunami", "tornado", "volcanic eruption", "damage crops", "destroy buildings"]
+                words: [
+                    { word: "a drought", meaning: "A long period with little or no rain." },
+                    { word: "damage crops", meaning: "Harm plants that are grown for food." },
+                    { word: "an earthquake", meaning: "A sudden shaking of the ground." },
+                    { word: "destroy buildings", meaning: "Completely ruin structures where people live or work." },
+                    { word: "injure people", meaning: "Cause physical harm to persons." },
+                    { word: "a tsunami", meaning: "A huge sea wave caused by an underwater earthquake." },
+                    { word: "a landslip", meaning: "When rocks and earth slide down a hill." },
+                    { word: "block roads", meaning: "Make paths for vehicles impassable." },
+                    { word: "a typhoon", meaning: "A tropical storm with very strong winds." },
+                    { word: "break windows", meaning: "Cause glass in windows to shatter." }
+                ],
+                exercise: {
+                    type: "fill-blanks",
+                    text: "Natural Disasters - What happens in __________? The ground becomes dry when there is no rain for a long time. This can __________ because plants need water to grow. - What happens in __________? It occurs when the earth suddenly starts shaking strongly. It can __________ and make them fall down in just a few seconds. This can __________ if they do not get outside in time. - What happens in __________? It often happens after earthquakes or other earth movements under the sea. It brings huge sea waves to the land and can cause damages. - What happens in __________? Rocks and earth slide down a hill in this natural disaster. The falling rocks can __________ and cause traffic jams. - What happens in __________? This is a storm with strong winds. It can __________, so people need to put tapes on them. It can also blow down trees.",
+                    answers: [
+                        "a drought",
+                        "damage crops",
+                        "an earthquake",
+                        "destroy buildings",
+                        "injure people",
+                        "a tsunami",
+                        "a landslip",
+                        "block roads",
+                        "a typhoon",
+                        "break windows"
+                    ]
+                }
             },
             { 
                 id: 3, 
                 title: "Cooking Actions", 
                 icon: "fas fa-utensils", 
                 description: "Verbs for food preparation and cooking techniques",
-                vocab: ["bake", "boil", "chop", "fry", "mix", "peel", "stir", "grill", "roast", "slice", "dice"]
+                words: [
+                    { word: "beat", meaning: "Mix ingredients quickly with a fork, whisk, or beater." },
+                    { word: "mix", meaning: "Combine ingredients together." },
+                    { word: "chop", meaning: "Cut food into small pieces with a knife." },
+                    { word: "fry", meaning: "Cook food in hot oil or fat." },
+                    { word: "steam", meaning: "Cook food using steam from boiling water." },
+                    { word: "peel", meaning: "Remove the skin from fruits or vegetables." },
+                    { word: "boil", meaning: "Cook food in boiling water." },
+                    { word: "stir", meaning: "Mix ingredients with a circular motion." },
+                    { word: "sprinkle", meaning: "Scatter small amounts of something over food." },
+                    { word: "pour", meaning: "Cause liquid to flow from a container." },
+                    { word: "bake", meaning: "Cook food in an oven using dry heat." },
+                    { word: "spread", meaning: "Apply a substance in an even layer." }
+                ],
+                exercise: {
+                    type: "fill-blanks",
+                    text: "I'm a Junior Super Chef! I can __________ eggs in a bowl to make breakfast for you. I know how to __________ flour and water to make bread too! I can use a knife to __________ some meat, And __________ it in a bit of oil until it's ready to eat. I can __________ a fish with ginger and lime. This easy dish can be done in no time. I use my hands to __________ the skins off the garlic quickly, And arrange all ingredients on the plate nicely. I can __________ water to cook pasta for my family. When it's cooking, I __________ the pasta sauce carefully. I put everything together and __________ some cheese on top. When my family start eating it, they aren't able to stop! Watch me __________ mixture into a cake tin to make a cake, And then carefully put it into the oven to __________. When it's cool, I __________ chocolate icing on it nicely. It's so yummy, but don't eat it too quickly!",
+                    answers: [
+                        "beat",
+                        "mix",
+                        "chop",
+                        "fry",
+                        "steam",
+                        "peel",
+                        "boil",
+                        "stir",
+                        "sprinkle",
+                        "pour",
+                        "bake",
+                        "spread"
+                    ]
+                }
             },
             { 
                 id: 4, 
                 title: "Films & Characters", 
                 icon: "fas fa-film", 
                 description: "Types of movies and adjectives for character description",
-                vocab: ["action film", "comedy", "horror", "science fiction", "documentary", "cruel", "curious", "lonely", "selfish", "wise"]
+                words: [
+                    { word: "a comedy", meaning: "A funny film that makes people laugh." },
+                    { word: "an action film", meaning: "An exciting film with fights, chases, and stunts." },
+                    { word: "a fantasy film", meaning: "A film about magical or imaginary worlds." },
+                    { word: "a horror film", meaning: "A scary film that frightens people." },
+                    { word: "timid", meaning: "Shy and lacking in confidence." },
+                    { word: "lonely", meaning: "Sad because one has no friends or company." },
+                    { word: "selfish", meaning: "Caring only about oneself." },
+                    { word: "curious", meaning: "Eager to know or learn something." }
+                ],
+                exercise: {
+                    type: "fill-blanks",
+                    text: "1. A __________ has funny characters. It makes people laugh. 2. In this __________ film, the hero has a fierce fight with the bad people and saves his daughter. 3. The Little Mermaid is a famous __________ film about an undersea princess. 4. Many people like watching __________ films because they want to get scared! 5. Lily is a __________ girl. She does not say anything when a classmate makes fun of her. 6. Alan often feels __________ because he has no friends. 7. Rachel always cares about people around her. She is not __________. 8. Samuel is very __________ about things around him. He always wants to find out how things work.",
+                    answers: [
+                        "comedy",
+                        "action",
+                        "fantasy",
+                        "horror",
+                        "timid",
+                        "lonely",
+                        "selfish",
+                        "curious"
+                    ]
+                }
             },
             { 
                 id: 5, 
                 title: "Travelling Activities", 
                 icon: "fas fa-suitcase-rolling", 
                 description: "Activities and experiences while traveling",
-                vocab: ["go sightseeing", "go on a cruise", "visit a theme park", "scuba-diving", "snorkelling", "surfing", "visit a safari park"]
+                words: [
+                    { word: "feed a kangaroo", meaning: "Give food to a kangaroo, often in Australia." },
+                    { word: "go sightseeing", meaning: "Visit interesting places as a tourist." },
+                    { word: "go on a cruise", meaning: "Take a holiday on a ship that visits different places." },
+                    { word: "ride on a banana boat", meaning: "Ride on an inflatable boat pulled by a speedboat." },
+                    { word: "go into a rainforest", meaning: "Enter and explore a dense forest with high rainfall." },
+                    { word: "visit a palace", meaning: "Tour a large, impressive house where royalty lives or lived." },
+                    { word: "go snowboarding", meaning: "Slide down snow-covered slopes on a single board." }
+                ],
+                exercise: {
+                    type: "fill-blanks",
+                    text: "We want to go travelling! I want to go to Australia and __________ I'll be very careful and keep my hand flat. It may bite my finger and I don't want that! I'd like to __________ around the world. I want to go to an interesting place and learn all about it. I always take lots of photos so that I can remember my visit. I hope I can __________ Travelling on the ocean on a great big ship Is my idea of the perfect trip! I think it's fun to __________ Feeling the wind in my hair and water splashing in my face. Don't worry, Mum. I'll wear a life jacket just in case! My dream is to __________ one day. I'll look at the trees reaching into the sky, Listen to the birds and maybe see an amazing butterfly. When I go travelling, I always want to __________ Learning about kings and queens is interesting for me! There's usually a cafe where I can have cakes and tea. Oh, how I wish I could __________ in winter. It was so much fun going skiing last year. I'm eager to learn a new sport this year.",
+                    answers: [
+                        "feed a kangaroo",
+                        "go sightseeing",
+                        "go on a cruise",
+                        "ride on a banana boat",
+                        "go into a rainforest",
+                        "visit a palace",
+                        "go snowboarding"
+                    ]
+                }
             },
             { 
                 id: 6, 
                 title: "Cultural Activities", 
                 icon: "fas fa-globe-americas", 
                 description: "Cultural traditions and activities from around the world",
-                vocab: ["Chinese opera", "kimono", "origami", "carnival", "kilt", "belly dance", "samba", "rock music"]
+                words: [
+                    { word: "Japan", meaning: "A country in Asia known for sushi and origami." },
+                    { word: "ice hockey", meaning: "An energetic sport played on ice." },
+                    { word: "cheongsam", meaning: "A long Chinese dress that hugs the body." },
+                    { word: "a kilt", meaning: "A skirt-like garment worn by Scottish men." },
+                    { word: "kimchi", meaning: "A Korean dish of fermented vegetables, spicy and sour." },
+                    { word: "a Venetian mask", meaning: "A mask worn during Venice Carnival." },
+                    { word: "a Chinese opera", meaning: "Traditional Chinese drama with painted faces." },
+                    { word: "a kimono", meaning: "Traditional Japanese clothing." }
+                ],
+                exercise: {
+                    type: "riddles",
+                    riddles: [
+                        { question: "I'm a country in Asia. People often relate me to sushi and origami. Which country am I?", answer: "Japan" },
+                        { question: "I'm an energetic sport on ice. Players chase one another in the ice rink. What am I?", answer: "Ice hockey" },
+                        { question: "I'm a long dress which hugs the body. Ladies in me always walk very elegantly. What am I?", answer: "Cheongsam" },
+                        { question: "I look like a skirt, but I'm not for a lady. I'm often made of woollen cloth with a pretty pattern. What am I?", answer: "A kilt" },
+                        { question: "I'm sour, salty and spicy. Making me and eating me both make people happy. What am I?", answer: "Kimchi" },
+                        { question: "I make people in Venice look mysterious! Carnival-goers use me to make others curious. What am I?", answer: "A Venetian mask" },
+                        { question: "I'm a form of drama in China. Actors and actresses paint their faces before going on stage. What am I?", answer: "A Chinese opera" }
+                    ]
+                }
             }
         ];
         
-        // Load completion status from localStorage or initialize
-        let completedUnits = JSON.parse(localStorage.getItem('vocabularyUnitsCompleted')) || [1, 2]; // Default: first 2 units completed
+        // Variables for speech synthesis
+        let voices = [];
+        let selectedVoice = null;
+        
+        // Load completion status from localStorage
+        let completedUnits = JSON.parse(localStorage.getItem('eslUnitsCompleted')) || [];
+        
+        // Current active unit
+        let currentUnit = 1;
         
         // DOM elements
-        const unitsContainer = document.getElementById('unitsContainer');
+        const unitButtons = document.querySelectorAll('.unit-btn');
+        const unitContents = document.querySelectorAll('.unit-content');
         const progressFill = document.getElementById('progressFill');
         const progressPercentage = document.getElementById('progressPercentage');
-        const celebration = document.getElementById('celebration');
-        const closeCelebration = document.getElementById('closeCelebration');
         
         // Function to calculate and update progress
         function updateProgress() {
@@ -681,174 +1430,405 @@
             progressPercentage.textContent = `${percentage}%`;
             
             // Save to localStorage
-            localStorage.setItem('vocabularyUnitsCompleted', JSON.stringify(completedUnits));
+            localStorage.setItem('eslUnitsCompleted', JSON.stringify(completedUnits));
             
-            // Show celebration if all units are completed
-            if (completedCount === totalUnits) {
+            // Update unit buttons styling
+            unitButtons.forEach(button => {
+                const unitId = parseInt(button.getAttribute('data-unit'));
+                button.classList.remove('completed', 'active');
+                
+                if (completedUnits.includes(unitId)) {
+                    button.classList.add('completed');
+                }
+                
+                if (unitId === currentUnit) {
+                    button.classList.add('active');
+                }
+            });
+        }
+        
+        // Load available voices
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            
+            // Update all voice selectors
+            document.querySelectorAll('select[id^="voice-select"]').forEach(select => {
+                select.innerHTML = '';
+                
+                // Add default option
+                const defaultOption = document.createElement('option');
+                defaultOption.value = 'default';
+                defaultOption.textContent = 'Default (British English)';
+                select.appendChild(defaultOption);
+                
+                // Filter for British English voices
+                const britishVoices = voices.filter(voice => 
+                    voice.lang.startsWith('en-GB') || 
+                    voice.name.toLowerCase().includes('british') ||
+                    voice.name.toLowerCase().includes('uk')
+                );
+                
+                // Add British voices first
+                if (britishVoices.length > 0) {
+                    const britishGroup = document.createElement('optgroup');
+                    britishGroup.label = 'British English Voices';
+                    
+                    britishVoices.forEach(voice => {
+                        const option = document.createElement('option');
+                        option.value = voice.name;
+                        option.textContent = `${voice.name} (${voice.lang})`;
+                        britishGroup.appendChild(option);
+                        
+                        // Set as default British voice
+                        if (!selectedVoice && voice.lang.startsWith('en-GB')) {
+                            selectedVoice = voice;
+                            option.selected = true;
+                        }
+                    });
+                    
+                    select.appendChild(britishGroup);
+                }
+                
+                // Add other English voices
+                const otherEnglishVoices = voices.filter(voice => 
+                    voice.lang.startsWith('en-') && 
+                    !voice.lang.startsWith('en-GB') &&
+                    !britishVoices.includes(voice)
+                );
+                
+                if (otherEnglishVoices.length > 0) {
+                    const otherGroup = document.createElement('optgroup');
+                    otherGroup.label = 'Other English Voices';
+                    
+                    otherEnglishVoices.forEach(voice => {
+                        const option = document.createElement('option');
+                        option.value = voice.name;
+                        option.textContent = `${voice.name} (${voice.lang})`;
+                        otherGroup.appendChild(option);
+                    });
+                    
+                    select.appendChild(otherGroup);
+                }
+            });
+        }
+        
+        // Speak a word using Web Speech API
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                } else {
+                    // Try to find a British English voice
+                    const britishVoice = voices.find(voice => 
+                        voice.lang.startsWith('en-GB') || 
+                        voice.name.toLowerCase().includes('british')
+                    );
+                    utterance.voice = britishVoice || voices[0];
+                }
+                
+                utterance.lang = 'en-GB';
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Function to load unit content
+        function loadUnit(unitId) {
+            currentUnit = unitId;
+            
+            // Hide all unit contents
+            unitContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show current unit content
+            document.getElementById(`unit${unitId}-content`).style.display = 'block';
+            
+            // Load unit data
+            const unit = courseUnits.find(u => u.id === unitId);
+            
+            // Load word list
+            const wordListContainer = document.getElementById(`unit${unitId}-word-list`);
+            wordListContainer.innerHTML = '';
+            
+            unit.words.forEach(wordObj => {
+                const wordItem = document.createElement('div');
+                wordItem.className = 'word-item';
+                wordItem.innerHTML = `
+                    <div class="word-text">
+                        <i class="fas fa-book"></i>
+                        ${wordObj.word}
+                    </div>
+                    <div class="word-meaning">${wordObj.meaning}</div>
+                    <div class="word-buttons">
+                        <button class="speak-btn" data-word="${wordObj.word}">
+                            <i class="fas fa-volume-up"></i> Speak Word
+                        </button>
+                        <button class="speak-btn sentence-btn" data-sentence="${wordObj.meaning}">
+                            <i class="fas fa-comment-alt"></i> Speak Meaning
+                        </button>
+                    </div>
+                `;
+                wordListContainer.appendChild(wordItem);
+            });
+            
+            // Add event listeners to speak buttons
+            document.querySelectorAll(`#unit${unitId}-word-list .speak-btn[data-word]`).forEach(button => {
+                button.addEventListener('click', function() {
+                    const word = this.getAttribute('data-word');
+                    speakWord(word);
+                });
+            });
+            
+            document.querySelectorAll(`#unit${unitId}-word-list .speak-btn[data-sentence]`).forEach(button => {
+                button.addEventListener('click', function() {
+                    const sentence = this.getAttribute('data-sentence');
+                    speakWord(sentence);
+                });
+            });
+            
+            // Load exercise based on type
+            if (unit.exercise.type === "fill-blanks") {
+                loadFillBlanksExercise(unitId, unit);
+            } else if (unit.exercise.type === "riddles") {
+                loadRiddlesExercise(unitId, unit);
+            }
+            
+            // Update progress display
+            updateProgress();
+        }
+        
+        // Function to load fill-in-the-blanks exercise
+        function loadFillBlanksExercise(unitId, unit) {
+            // Clear any existing event listeners and reset
+            const checkBtn = document.getElementById(`unit${unitId}-check-btn`);
+            const resetBtn = document.getElementById(`unit${unitId}-reset-btn`);
+            const resultDiv = document.getElementById(`unit${unitId}-result`);
+            
+            // Reset result display
+            resultDiv.className = 'exercise-result';
+            resultDiv.style.display = 'none';
+            resultDiv.textContent = '';
+            
+            // Load word options
+            const wordOptionsContainer = document.getElementById(`unit${unitId}-word-options`);
+            wordOptionsContainer.innerHTML = '';
+            
+            // Shuffle the word options
+            const shuffledWords = [...unit.words].sort(() => Math.random() - 0.5);
+            
+            shuffledWords.forEach(wordObj => {
+                const wordOption = document.createElement('div');
+                wordOption.className = 'word-option';
+                wordOption.textContent = wordObj.word;
+                wordOption.setAttribute('data-word', wordObj.word);
+                wordOptionsContainer.appendChild(wordOption);
+            });
+            
+            // Add event listeners to word options
+            document.querySelectorAll(`#unit${unitId}-word-options .word-option`).forEach(option => {
+                option.addEventListener('click', function() {
+                    if (this.classList.contains('used')) return;
+                    
+                    const word = this.getAttribute('data-word');
+                    const blanks = document.querySelectorAll(`#unit${unitId}-content .blank:not(.has-answer)`);
+                    
+                    if (blanks.length > 0) {
+                        const firstBlank = blanks[0];
+                        firstBlank.textContent = word;
+                        firstBlank.classList.add('has-answer');
+                        this.classList.add('used');
+                        
+                        // Check if all blanks are filled
+                        checkAllBlanksFilled(unitId);
+                    }
+                });
+            });
+            
+            // Reset exercise button
+            resetBtn.onclick = function() {
+                // Reset all blanks
+                document.querySelectorAll(`#unit${unitId}-content .blank`).forEach(blank => {
+                    blank.textContent = '__________';
+                    blank.classList.remove('has-answer');
+                });
+                
+                // Reset word options
+                document.querySelectorAll(`#unit${unitId}-word-options .word-option`).forEach(option => {
+                    option.classList.remove('used');
+                });
+                
+                // Reset result display
+                resultDiv.className = 'exercise-result';
+                resultDiv.style.display = 'none';
+                resultDiv.textContent = '';
+            };
+            
+            // Check answers button
+            checkBtn.onclick = function() {
+                checkFillBlanksAnswers(unitId, unit);
+            };
+        }
+        
+        // Function to check if all blanks are filled
+        function checkAllBlanksFilled(unitId) {
+            const blanks = document.querySelectorAll(`#unit${unitId}-content .blank`);
+            const allFilled = Array.from(blanks).every(blank => blank.classList.contains('has-answer'));
+            
+            if (allFilled) {
+                // Auto-check answers after a delay
                 setTimeout(() => {
-                    celebration.style.display = 'flex';
+                    const unit = courseUnits.find(u => u.id === parseInt(unitId));
+                    checkFillBlanksAnswers(unitId, unit);
                 }, 500);
             }
         }
         
-        // Function to render units
-        function renderUnits() {
-            unitsContainer.innerHTML = '';
+        // Function to check fill-in-the-blanks answers
+        function checkFillBlanksAnswers(unitId, unit) {
+            const blanks = document.querySelectorAll(`#unit${unitId}-content .blank`);
+            const resultDiv = document.getElementById(`unit${unitId}-result`);
             
-            courseUnits.forEach(unit => {
-                const isCompleted = completedUnits.includes(unit.id);
+            let correctCount = 0;
+            const totalBlanks = blanks.length;
+            
+            blanks.forEach((blank, index) => {
+                const userAnswer = blank.textContent.trim().toLowerCase();
+                const correctAnswer = unit.exercise.answers[index].toLowerCase();
                 
-                const unitElement = document.createElement('div');
-                unitElement.className = `unit ${isCompleted ? 'completed' : ''}`;
-                unitElement.dataset.unitId = unit.id;
-                
-                // Create vocabulary items HTML
-                let vocabHTML = '';
-                if (unit.vocab && unit.vocab.length > 0) {
-                    const vocabItems = unit.vocab.slice(0, 5).map(item => 
-                        `<span class="vocab-item">${item}</span>`
-                    ).join('');
-                    
-                    vocabHTML = `
-                        <div class="unit-vocab">
-                            <div class="unit-vocab-title">Key Vocabulary:</div>
-                            <div class="unit-vocab-list">
-                                ${vocabItems}
-                                ${unit.vocab.length > 5 ? '<span class="vocab-item">+' + (unit.vocab.length - 5) + ' more</span>' : ''}
-                            </div>
-                        </div>
-                    `;
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    blank.style.color = '#2E7D32';
+                } else {
+                    blank.style.color = '#C62828';
+                    blank.innerHTML = `${blank.textContent} <span style="color: #666; font-size: 14px;">(Correct: ${unit.exercise.answers[index]})</span>`;
                 }
-                
-                unitElement.innerHTML = `
-                    <div class="unit-number">${unit.id}</div>
-                    <div class="unit-completion-badge">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="unit-icon ${isCompleted ? 'grey' : 'green'}">
-                        ${isCompleted ? '<i class="fas fa-check"></i>' : `<i class="${unit.icon}"></i>`}
-                    </div>
-                    <div class="unit-title">Unit ${unit.id}: ${unit.title}</div>
-                    <div class="unit-description">${unit.description}</div>
-                    ${vocabHTML}
-                    <div class="unit-status">${isCompleted ? 'Completed' : 'To complete'}</div>
-                `;
-                
-                // Add click event to toggle completion status
-                unitElement.addEventListener('click', () => {
-                    toggleUnitCompletion(unit.id);
-                });
-                
-                unitsContainer.appendChild(unitElement);
             });
             
-            updateProgress();
-        }
-        
-        // Function to toggle unit completion status
-        function toggleUnitCompletion(unitId) {
-            const index = completedUnits.indexOf(unitId);
+            // Show result
+            const percentage = Math.round((correctCount / totalBlanks) * 100);
+            resultDiv.className = 'exercise-result';
+            resultDiv.style.display = 'block';
             
-            if (index === -1) {
-                // Unit is not completed, add it
-                completedUnits.push(unitId);
+            if (percentage === 100) {
+                resultDiv.classList.add('correct');
+                resultDiv.textContent = `Excellent! You got ${correctCount} out of ${totalBlanks} correct! (${percentage}%)`;
+                
+                // Mark unit as completed if not already
+                if (!completedUnits.includes(parseInt(unitId))) {
+                    completedUnits.push(parseInt(unitId));
+                    updateProgress();
+                }
+            } else if (percentage >= 70) {
+                resultDiv.classList.add('correct');
+                resultDiv.textContent = `Good job! You got ${correctCount} out of ${totalBlanks} correct! (${percentage}%)`;
             } else {
-                // Unit is completed, remove it
-                completedUnits.splice(index, 1);
+                resultDiv.classList.add('incorrect');
+                resultDiv.textContent = `You got ${correctCount} out of ${totalBlanks} correct. Try again! (${percentage}%)`;
             }
+        }
+        
+        // Function to load riddles exercise - FIXED VERSION
+        function loadRiddlesExercise(unitId, unit) {
+            // Set up event listeners for riddle buttons
+            document.querySelectorAll(`#unit${unitId}-content .riddle-btn`).forEach(button => {
+                // Remove any existing event listeners to prevent duplicates
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+                
+                // Add fresh event listener
+                newButton.addEventListener('click', function() {
+                    const riddleNum = this.getAttribute('data-riddle');
+                    const answerDiv = document.getElementById(`riddle${riddleNum}-answer`);
+                    
+                    // Toggle the 'show' class
+                    answerDiv.classList.toggle('show');
+                    
+                    // Update button text
+                    if (answerDiv.classList.contains('show')) {
+                        this.textContent = 'Hide Answer';
+                        this.style.backgroundColor = '#ff6b6b'; // Change to red when showing answer
+                    } else {
+                        this.textContent = 'Show Answer';
+                        this.style.backgroundColor = ''; // Reset to default
+                    }
+                });
+            });
             
-            // Re-render units with updated status
-            renderUnits();
-        }
-        
-        // Function to reset all progress
-        function resetProgress() {
-            if (confirm("Are you sure you want to reset all progress? This will mark all units as incomplete.")) {
-                completedUnits = [];
-                renderUnits();
-                celebration.style.display = 'none';
+            // Set up the "Mark Unit Complete" button
+            const completeBtn = document.getElementById(`unit${unitId}-check-btn`);
+            if (completeBtn) {
+                completeBtn.onclick = function() {
+                    if (!completedUnits.includes(parseInt(unitId))) {
+                        completedUnits.push(parseInt(unitId));
+                        updateProgress();
+                        
+                        const resultDiv = document.getElementById(`unit${unitId}-result`);
+                        resultDiv.className = 'exercise-result correct';
+                        resultDiv.style.display = 'block';
+                        resultDiv.textContent = 'Unit marked as complete! Great job solving all the riddles!';
+                    }
+                };
             }
         }
-        
-        // Function to complete all units
-        function completeAll() {
-            completedUnits = courseUnits.map(unit => unit.id);
-            renderUnits();
-        }
-        
-        // Close celebration modal
-        closeCelebration.addEventListener('click', () => {
-            celebration.style.display = 'none';
-        });
         
         // Initialize the page
-        renderUnits();
+        function initApp() {
+            // Set up unit button click events
+            unitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const unitId = parseInt(this.getAttribute('data-unit'));
+                    loadUnit(unitId);
+                });
+            });
+            
+            // Load voices when they become available
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+            
+            // Load voices immediately if they're already available
+            if (speechSynthesis.getVoices().length > 0) {
+                loadVoices();
+            }
+            
+            // Set up voice selector event listeners (all selectors sync to same selection)
+            document.querySelectorAll('select[id^="voice-select"]').forEach(select => {
+                select.addEventListener('change', function() {
+                    const voiceName = this.value;
+                    
+                    if (voiceName === 'default') {
+                        // Try to find a British English voice
+                        selectedVoice = voices.find(voice => 
+                            voice.lang.startsWith('en-GB') || 
+                            voice.name.toLowerCase().includes('british')
+                        ) || voices[0];
+                    } else {
+                        selectedVoice = voices.find(voice => voice.name === voiceName);
+                    }
+                    
+                    // Sync all other voice selectors
+                    document.querySelectorAll('select[id^="voice-select"]').forEach(otherSelect => {
+                        if (otherSelect !== this) {
+                            otherSelect.value = this.value;
+                        }
+                    });
+                });
+            });
+            
+            // Load first unit by default
+            loadUnit(1);
+        }
         
-        // Add reset button for demo purposes (can be removed in production)
-        const resetButton = document.createElement('button');
-        resetButton.innerHTML = '<i class="fas fa-redo"></i> Reset Progress';
-        resetButton.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 24px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        `;
-        resetButton.addEventListener('mouseenter', () => {
-            resetButton.style.transform = 'translateY(-3px)';
-            resetButton.style.boxShadow = '0 10px 25px rgba(255, 107, 107, 0.4)';
-        });
-        resetButton.addEventListener('mouseleave', () => {
-            resetButton.style.transform = 'translateY(0)';
-            resetButton.style.boxShadow = '0 6px 20px rgba(255, 107, 107, 0.3)';
-        });
-        resetButton.addEventListener('click', resetProgress);
-        document.body.appendChild(resetButton);
-        
-        // Add complete all button for demo purposes (can be removed in production)
-        const completeAllButton = document.createElement('button');
-        completeAllButton.innerHTML = '<i class="fas fa-check-double"></i> Complete All';
-        completeAllButton.style.cssText = `
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: linear-gradient(135deg, #58cc02 0%, #7ee043 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 24px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(88, 204, 2, 0.3);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        `;
-        completeAllButton.addEventListener('mouseenter', () => {
-            completeAllButton.style.transform = 'translateY(-3px)';
-            completeAllButton.style.boxShadow = '0 10px 25px rgba(88, 204, 2, 0.4)';
-        });
-        completeAllButton.addEventListener('mouseleave', () => {
-            completeAllButton.style.transform = 'translateY(0)';
-            completeAllButton.style.boxShadow = '0 6px 20px rgba(88, 204, 2, 0.3)';
-        });
-        completeAllButton.addEventListener('click', completeAll);
-        document.body.appendChild(completeAllButton);
+        // Initialize the app when page loads
+        window.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
