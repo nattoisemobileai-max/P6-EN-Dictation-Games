@@ -23,6 +23,7 @@
             --orange-color: #e67e22;
             --indigo-color: #6c5ce7;
             --danger-color: #ff6b6b;
+            --xp-color: #9C27B0;
             --light-color: #FFFFFF;
             --dark-color: #333333;
             --gray-color: #F5F5F5;
@@ -122,6 +123,16 @@
         .stat-label {
             font-size: 16px;
             font-weight: 600;
+        }
+        
+        .xp-badge {
+            background-color: var(--xp-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 5px;
         }
         
         .main-content {
@@ -413,6 +424,9 @@
         .progress-item-title {
             font-weight: 600;
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .progress-item-desc {
@@ -432,6 +446,21 @@
             height: 100%;
             border-radius: 4px;
             transition: width 0.8s ease;
+        }
+        
+        .progress-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .progress-stat {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
         
         .quick-links {
@@ -562,6 +591,15 @@
             transform: translateY(-2px);
         }
         
+        /* User stats enhancements */
+        .user-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--xp-color);
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .modules-grid {
@@ -668,7 +706,6 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div class="logo-text">Oxford English Learning Hub</div>
-                
             </div>
             
             <div class="stats-container">
@@ -682,11 +719,11 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="totalWords">300+</div>
-                    <div class="stat-label">Vocabulary Words</div>
+                    <div class="stat-label">Vocabulary</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="progressPercentage">0%</div>
-                    <div class="stat-label">Overall Progress</div>
+                    <div class="stat-number" id="userLevel">1</div>
+                    <div class="stat-label">Level <span class="xp-badge" id="userXP">0 XP</span></div>
                 </div>
             </div>
         </header>
@@ -708,7 +745,7 @@
                             <i class="fas fa-microphone-alt"></i>
                         </div>
                         <div>
-                            <div class="module-title">Dictation</div>
+                            <div class="module-title">Dictation Master</div>
                             <div class="module-desc">Improve listening and writing skills</div>
                         </div>
                     </div>
@@ -719,7 +756,7 @@
                                 <div class="module-stat-label">Level</div>
                             </div>
                             <div class="module-stat">
-                                <div class="module-stat-value" id="dictation-exercises">10+</div>
+                                <div class="module-stat-value" id="dictation-exercises">5 Rounds</div>
                                 <div class="module-stat-label">Exercises</div>
                             </div>
                             <div class="module-stat">
@@ -729,10 +766,10 @@
                         </div>
                         
                         <ul class="module-features">
-                            <li><i class="fas fa-check-circle"></i> Listening comprehension exercises</li>
-                            <li><i class="fas fa-check-circle"></i> Sentence dictation practice</li>
-                            <li><i class="fas fa-check-circle"></i> Vocabulary in context</li>
-                            <li><i class="fas fa-check-circle"></i> Pronunciation feedback</li>
+                            <li><i class="fas fa-check-circle"></i> 5 progressive learning rounds</li>
+                            <li><i class="fas fa-check-circle"></i> British English pronunciation</li>
+                            <li><i class="fas fa-check-circle"></i> Skip round functionality</li>
+                            <li><i class="fas fa-check-circle"></i> XP and leveling system</li>
                         </ul>
                         
                         <a href="RD7.html" class="module-btn">
@@ -1050,35 +1087,61 @@
                 <div class="section-content">
                     <div class="progress-summary">
                         <div class="progress-title">Track your progress across all English learning modules</div>
-                        <p>Complete exercises to improve your skills and see your progress grow.</p>
+                        <p>Complete exercises to improve your skills, earn XP, and level up!</p>
                         
                         <div class="progress-items">
+                            <!-- Dictation Progress Item -->
                             <div class="progress-item">
                                 <div class="progress-item-icon" style="background-color: #8e44ad;">
                                     <i class="fas fa-microphone-alt"></i>
                                 </div>
                                 <div class="progress-item-text">
-                                    <div class="progress-item-title">Dictation</div>
-                                    <div class="progress-item-desc">Listening and writing practice</div>
+                                    <div class="progress-item-title">
+                                        Dictation Master 
+                                        <span class="xp-badge" id="dictation-xp-badge">0 XP</span>
+                                    </div>
+                                    <div class="progress-item-desc">Listening and writing practice with British English</div>
                                     <div class="progress-bar-container">
                                         <div class="progress-bar" id="dictation-progress" style="width: 0%; background-color: #8e44ad;"></div>
+                                    </div>
+                                    <div class="progress-stats">
+                                        <div class="progress-stat">
+                                            <i class="fas fa-flag-checkered"></i>
+                                            <span id="dictation-rounds-completed">0/5 rounds</span>
+                                        </div>
+                                        <div class="progress-stat">
+                                            <i class="fas fa-repeat"></i>
+                                            <span id="dictation-completions">0 completions</span>
+                                        </div>
+                                        <div class="progress-stat">
+                                            <i class="fas fa-forward"></i>
+                                            <span id="dictation-skips">0 skips</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
+                            <!-- Unit Words Progress Item -->
                             <div class="progress-item">
                                 <div class="progress-item-icon" style="background-color: #1cb0f6;">
                                     <i class="fas fa-book"></i>
                                 </div>
                                 <div class="progress-item-text">
                                     <div class="progress-item-title">Unit Words (6A)</div>
-                                    <div class="progress-item-desc">Vocabulary building</div>
+                                    <div class="progress-item-desc">Vocabulary building with Oxford Living English</div>
                                     <div class="progress-bar-container">
                                         <div class="progress-bar" id="unit-words-progress" style="width: 0%; background-color: #1cb0f6;"></div>
+                                    </div>
+                                    <div class="progress-stats">
+                                        <div class="progress-stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span id="unit-words-exercises-completed">0/18 exercises</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
+                            <!-- Grammar Progress Item -->
                             <div class="progress-item">
                                 <div class="progress-item-icon" style="background-color: #00b894;">
                                     <i class="fas fa-language"></i>
@@ -1089,9 +1152,16 @@
                                     <div class="progress-bar-container">
                                         <div class="progress-bar" id="grammar-progress" style="width: 0%; background-color: #00b894;"></div>
                                     </div>
+                                    <div class="progress-stats">
+                                        <div class="progress-stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span id="grammar-exercises-completed">0/50+ exercises</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
+                            <!-- Miss Tse Study Progress Item -->
                             <div class="progress-item">
                                 <div class="progress-item-icon" style="background-color: #6c5ce7;">
                                     <i class="fas fa-chalkboard-teacher"></i>
@@ -1101,6 +1171,12 @@
                                     <div class="progress-item-desc">Specialized learning materials</div>
                                     <div class="progress-bar-container">
                                         <div class="progress-bar" id="miss-tse-progress" style="width: 0%; background-color: #6c5ce7;"></div>
+                                    </div>
+                                    <div class="progress-stats">
+                                        <div class="progress-stat">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span id="miss-tse-exercises-completed">0/25+ exercises</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1163,6 +1239,44 @@
     <script>
         // Load progress from localStorage
         function loadProgress() {
+            // Load dictation progress
+            const dictationData = JSON.parse(localStorage.getItem('dictationProgress')) || {};
+            
+            // Calculate dictation progress
+            let dictationProgress = 0;
+            let dictationRoundsCompleted = 0;
+            let dictationTotalCompletions = 0;
+            let dictationTotalSkips = 0;
+            let dictationTotalXP = 0;
+            
+            if (dictationData.roundCompletions) {
+                const roundCompletions = dictationData.roundCompletions;
+                
+                // Count rounds completed (at least once)
+                for (let round = 1; round <= 5; round++) {
+                    if (roundCompletions[round] && roundCompletions[round].completed > 0) {
+                        dictationRoundsCompleted++;
+                        dictationTotalCompletions += roundCompletions[round].completed;
+                        dictationTotalXP += roundCompletions[round].xpEarned;
+                    }
+                    if (roundCompletions[round] && roundCompletions[round].skipped) {
+                        dictationTotalSkips++;
+                        dictationTotalXP += roundCompletions[round].xpEarned;
+                    }
+                }
+                
+                // Calculate progress percentage (rounds completed out of 5)
+                dictationProgress = Math.round((dictationRoundsCompleted / 5) * 100);
+            }
+            
+            // Update dictation progress display
+            document.getElementById('dictation-progress').style.width = dictationProgress + '%';
+            document.getElementById('dictation-progress-value').textContent = dictationProgress + '%';
+            document.getElementById('dictation-rounds-completed').textContent = `${dictationRoundsCompleted}/5 rounds`;
+            document.getElementById('dictation-completions').textContent = `${dictationTotalCompletions} completions`;
+            document.getElementById('dictation-skips').textContent = `${dictationTotalSkips} skips`;
+            document.getElementById('dictation-xp-badge').textContent = `${dictationTotalXP} XP`;
+            
             // Load unit words progress
             const unitWordsCompleted = JSON.parse(localStorage.getItem('eslExercisesCompleted')) || {};
             let unitWordsProgress = 0;
@@ -1179,28 +1293,22 @@
                 unitWordsProgress = Math.round((completedUnitExercises / totalUnitExercises) * 100);
             }
             
-            // Load dictation progress (if exists)
-            const dictationProgress = localStorage.getItem('dictationProgress') || 0;
-            
-            // Load Miss Tse Study progress (if exists)
-            const missTseProgress = localStorage.getItem('missTseProgress') || 0;
-            
-            // Update progress bars
-            document.getElementById('dictation-progress').style.width = dictationProgress + '%';
+            // Update unit words progress display
             document.getElementById('unit-words-progress').style.width = unitWordsProgress + '%';
-            document.getElementById('miss-tse-progress').style.width = missTseProgress + '%';
-            
-            // Update progress values
-            document.getElementById('dictation-progress-value').textContent = dictationProgress + '%';
             document.getElementById('unit-words-progress-value').textContent = unitWordsProgress + '%';
-            document.getElementById('miss-tse-progress-value').textContent = missTseProgress + '%';
+            document.getElementById('unit-words-exercises').textContent = `${completedUnitExercises}/${totalUnitExercises}`;
+            document.getElementById('unit-words-exercises-completed').textContent = `${completedUnitExercises}/${totalUnitExercises} exercises`;
             
-            // Update total progress
-            const totalProgress = Math.round((parseInt(dictationProgress) + unitWordsProgress + parseInt(missTseProgress)) / 3);
-            document.getElementById('progressPercentage').textContent = totalProgress + '%';
+            // Load user level and XP from dictation data
+            const userLevel = dictationData.level || 1;
+            const userTotalXP = dictationData.totalXP || 0;
             
-            // Update exercise counts
-            document.getElementById('unit-words-exercises').textContent = completedUnitExercises + '/' + totalUnitExercises;
+            // Update user stats
+            document.getElementById('userLevel').textContent = userLevel;
+            document.getElementById('userXP').textContent = `${userTotalXP} XP`;
+            
+            // Calculate overall progress (average of all modules)
+            const overallProgress = Math.round((dictationProgress + unitWordsProgress) / 2);
             
             // Update module count
             document.getElementById('totalModules').textContent = '8';
@@ -1215,7 +1323,73 @@
             const activityList = document.getElementById('activity-list');
             const activityEmpty = document.getElementById('activity-empty');
             
-            if (learningLog.length === 0) {
+            // Load dictation activities if they exist
+            const dictationData = JSON.parse(localStorage.getItem('dictationProgress')) || {};
+            
+            // Create combined activities array
+            let allActivities = [...learningLog];
+            
+            // Add dictation activities if they exist
+            if (dictationData.roundCompletions) {
+                const roundCompletions = dictationData.roundCompletions;
+                const now = new Date();
+                
+                // Add dictation round completions as activities
+                for (let round = 1; round <= 5; round++) {
+                    if (roundCompletions[round] && roundCompletions[round].completed > 0) {
+                        // Create activity for each completion
+                        for (let i = 0; i < roundCompletions[round].completed; i++) {
+                            const activityDate = new Date(now.getTime() - (i * 3600000)); // Subtract hours for demo
+                            const roundNames = {
+                                1: "New Words Learning",
+                                2: "Fill in the Blanks",
+                                3: "Speak & Dictate",
+                                4: "Bonus Words",
+                                5: "Paragraph Dictation"
+                            };
+                            
+                            const xpEarned = roundCompletions[round].xpEarned / roundCompletions[round].completed;
+                            
+                            allActivities.push({
+                                timestamp: activityDate.toISOString(),
+                                module: "Dictation",
+                                exerciseTitle: `Completed ${roundNames[round]}`,
+                                score: xpEarned,
+                                total: 100,
+                                unitTitle: "Dictation Master - RD7",
+                                xp: xpEarned
+                            });
+                        }
+                    }
+                    
+                    // Add skipped rounds as activities
+                    if (roundCompletions[round] && roundCompletions[round].skipped) {
+                        const skipDate = new Date(now.getTime() - 7200000); // 2 hours ago for demo
+                        const roundNames = {
+                            1: "New Words Learning",
+                            2: "Fill in the Blanks",
+                            3: "Speak & Dictate",
+                            4: "Bonus Words",
+                            5: "Paragraph Dictation"
+                        };
+                        
+                        allActivities.push({
+                            timestamp: skipDate.toISOString(),
+                            module: "Dictation",
+                            exerciseTitle: `Skipped ${roundNames[round]}`,
+                            score: 0,
+                            total: 100,
+                            unitTitle: "Dictation Master - RD7",
+                            xp: roundCompletions[round].xpEarned
+                        });
+                    }
+                }
+            }
+            
+            // Sort activities by timestamp (newest first)
+            allActivities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            if (allActivities.length === 0) {
                 activityEmpty.style.display = 'block';
                 return;
             }
@@ -1223,7 +1397,7 @@
             activityEmpty.style.display = 'none';
             
             // Show only last 5 activities
-            const recentActivities = learningLog.slice(0, 5);
+            const recentActivities = allActivities.slice(0, 5);
             
             recentActivities.forEach(activity => {
                 const activityItem = document.createElement('div');
@@ -1233,25 +1407,28 @@
                 let iconColor = '#1cb0f6'; // Default blue
                 let iconClass = 'fas fa-book';
                 
-                if (activity.unitTitle.includes('Charity Work')) {
+                if (activity.module === "Dictation") {
+                    iconColor = '#8e44ad';
+                    iconClass = 'fas fa-microphone-alt';
+                } else if (activity.unitTitle && activity.unitTitle.includes('Charity Work')) {
                     iconColor = '#1cb0f6';
                     iconClass = 'fas fa-hands-helping';
-                } else if (activity.unitTitle.includes('Natural Disasters')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Natural Disasters')) {
                     iconColor = '#ff9f00';
                     iconClass = 'fas fa-exclamation-triangle';
-                } else if (activity.unitTitle.includes('Cooking Actions')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Cooking Actions')) {
                     iconColor = '#e67e22';
                     iconClass = 'fas fa-utensils';
-                } else if (activity.unitTitle.includes('Films')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Films')) {
                     iconColor = '#9b59b6';
                     iconClass = 'fas fa-film';
-                } else if (activity.unitTitle.includes('Travelling')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Travelling')) {
                     iconColor = '#3498db';
                     iconClass = 'fas fa-suitcase-rolling';
-                } else if (activity.unitTitle.includes('Cultural')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Cultural')) {
                     iconColor = '#2ecc71';
                     iconClass = 'fas fa-globe-americas';
-                } else if (activity.unitTitle.includes('Miss Tse')) {
+                } else if (activity.unitTitle && activity.unitTitle.includes('Miss Tse')) {
                     iconColor = '#6c5ce7';
                     iconClass = 'fas fa-chalkboard-teacher';
                 }
@@ -1259,15 +1436,21 @@
                 const date = new Date(activity.timestamp);
                 const timeString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 
+                // Format score display
+                let scoreDisplay = `${activity.score}/${activity.total}`;
+                if (activity.xp) {
+                    scoreDisplay = `<span style="color: var(--xp-color);">+${activity.xp} XP</span>`;
+                }
+                
                 activityItem.innerHTML = `
                     <div class="activity-icon" style="background-color: ${iconColor};">
                         <i class="${iconClass}"></i>
                     </div>
                     <div class="activity-content">
                         <div class="activity-title">${activity.exerciseTitle}</div>
-                        <div class="activity-time">${timeString} • ${activity.unitTitle}</div>
+                        <div class="activity-time">${timeString} • ${activity.unitTitle || activity.module}</div>
                     </div>
-                    <div class="activity-score">${activity.score}/${activity.total}</div>
+                    <div class="activity-score">${scoreDisplay}</div>
                 `;
                 
                 activityList.appendChild(activityItem);
@@ -1279,7 +1462,7 @@
             loadProgress();
             
             // Add some sample data if no data exists (for demo purposes)
-            const hasData = localStorage.getItem('eslLearningLog');
+            const hasData = localStorage.getItem('eslLearningLog') || localStorage.getItem('dictationProgress');
             if (!hasData) {
                 // Add sample activity for demo
                 const sampleActivity = [
@@ -1297,8 +1480,25 @@
                 
                 localStorage.setItem('eslLearningLog', JSON.stringify(sampleActivity));
                 
-                // Reload to show sample activity
+                // Add sample dictation progress for demo
+                const sampleDictationProgress = {
+                    points: 0,
+                    totalXP: 0,
+                    level: 1,
+                    roundCompletions: {
+                        1: { completed: 0, xpEarned: 0, skipped: false },
+                        2: { completed: 0, xpEarned: 0, skipped: false },
+                        3: { completed: 0, xpEarned: 0, skipped: false },
+                        4: { completed: 0, xpEarned: 0, skipped: false },
+                        5: { completed: 0, xpEarned: 0, skipped: false }
+                    }
+                };
+                
+                localStorage.setItem('dictationProgress', JSON.stringify(sampleDictationProgress));
+                
+                // Reload to show sample data
                 setTimeout(() => {
+                    loadProgress();
                     loadRecentActivity();
                 }, 500);
             }
