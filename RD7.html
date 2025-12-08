@@ -23,6 +23,8 @@
             --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             --border-radius: 10px;
             --card-bg: #FFFFFF;
+            --xp-color: #9C27B0;
+            --skip-color: #757575;
         }
         
         body {
@@ -105,6 +107,16 @@
             opacity: 0.9;
         }
         
+        .xp-badge {
+            background-color: var(--xp-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
         .main-content {
             display: flex;
             min-height: 600px;
@@ -132,6 +144,7 @@
             align-items: center;
             gap: 15px;
             background-color: rgba(255, 255, 255, 0.1);
+            position: relative;
         }
         
         .round-item:hover {
@@ -145,6 +158,11 @@
         
         .round-item.completed {
             background-color: rgba(76, 175, 80, 0.7);
+        }
+        
+        .round-item.skipped {
+            background-color: rgba(117, 117, 117, 0.5);
+            opacity: 0.8;
         }
         
         .round-icon {
@@ -169,6 +187,11 @@
             color: var(--primary-color);
         }
         
+        .round-item.skipped .round-icon {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: var(--skip-color);
+        }
+        
         .round-info {
             flex: 1;
         }
@@ -184,6 +207,18 @@
             opacity: 0.8;
         }
         
+        .completion-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
         .content-area {
             flex: 1;
             padding: 30px;
@@ -192,6 +227,13 @@
         
         .round-header {
             margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .round-header-info {
+            flex: 1;
         }
         
         .round-header h2 {
@@ -211,6 +253,35 @@
             color: #666;
             font-size: 16px;
             max-width: 800px;
+        }
+        
+        .round-stats {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+        }
+        
+        .round-stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .round-stat-label {
+            color: #666;
+        }
+        
+        .round-stat-value {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .xp-earned {
+            color: var(--xp-color);
+            font-weight: 700;
         }
         
         .exercise-container {
@@ -717,6 +788,20 @@
             background-color: #616161;
         }
         
+        .nav-btn.skip {
+            background-color: var(--skip-color);
+            margin-left: 10px;
+        }
+        
+        .nav-btn.skip:hover {
+            background-color: #5d5d5d;
+        }
+        
+        .nav-buttons-group {
+            display: flex;
+            gap: 10px;
+        }
+        
         /* Custom Modal for messages */
         .modal-overlay {
             position: fixed;
@@ -786,9 +871,31 @@
             color: #666;
         }
         
+        .modal-stats {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .modal-stat-label {
+            color: #666;
+        }
+        
+        .modal-stat-value {
+            font-weight: 600;
+        }
+        
         .modal-actions {
             display: flex;
             justify-content: flex-end;
+            gap: 10px;
         }
         
         .modal-btn {
@@ -805,6 +912,27 @@
         
         .modal-btn:hover {
             background-color: #3D8B40;
+        }
+        
+        .modal-btn.secondary {
+            background-color: #757575;
+        }
+        
+        .modal-btn.secondary:hover {
+            background-color: #616161;
+        }
+        
+        /* Skip confirmation modal */
+        .skip-confirmation {
+            max-width: 400px;
+        }
+        
+        .skip-warning {
+            background-color: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
         }
         
         /* Voice Selector */
@@ -858,6 +986,15 @@
                 flex: 1;
                 min-width: 200px;
             }
+            
+            .round-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .round-stats {
+                width: 100%;
+            }
         }
         
         @media (max-width: 768px) {
@@ -898,6 +1035,11 @@
             .navigation {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .nav-buttons-group {
+                width: 100%;
+                flex-direction: column;
             }
             
             .nav-btn {
@@ -945,8 +1087,8 @@
                     <div class="stat-label">Points</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value" id="streak">0</div>
-                    <div class="stat-label">Day Streak</div>
+                    <div class="stat-value" id="total-xp">0</div>
+                    <div class="stat-label">Total XP</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value" id="level">1</div>
@@ -1006,8 +1148,20 @@
             <div class="content-area">
                 <!-- Round 1: New Words -->
                 <div class="round-header" id="round1-header">
-                    <h2><i class="fas fa-book"></i> Round 1: Learn New Words</h2>
-                    <p>Click on the speaker icon to listen to each word with British English pronunciation.</p>
+                    <div class="round-header-info">
+                        <h2><i class="fas fa-book"></i> Round 1: Learn New Words</h2>
+                        <p>Click on the speaker icon to listen to each word with British English pronunciation.</p>
+                    </div>
+                    <div class="round-stats">
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">Completed:</span>
+                            <span class="round-stat-value" id="round1-completed">0 times</span>
+                        </div>
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">XP Earned:</span>
+                            <span class="round-stat-value xp-earned" id="round1-xp">0 XP</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="exercise-container" id="round1-content">
@@ -1018,16 +1172,33 @@
                         <button class="nav-btn prev" disabled>
                             <i class="fas fa-arrow-left"></i> Previous
                         </button>
-                        <button class="nav-btn next" id="next-round1">
-                            Next Round <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <div class="nav-buttons-group">
+                            <button class="nav-btn skip" id="skip-round1">
+                                <i class="fas fa-forward"></i> Skip Round
+                            </button>
+                            <button class="nav-btn next" id="next-round1">
+                                Next Round <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Round 2: Fill in the blanks -->
                 <div class="round-header" id="round2-header" style="display: none;">
-                    <h2><i class="fas fa-edit"></i> Round 2: Fill in the Blanks</h2>
-                    <p>Drag and drop the correct words into the blanks to complete the sentences.</p>
+                    <div class="round-header-info">
+                        <h2><i class="fas fa-edit"></i> Round 2: Fill in the Blanks</h2>
+                        <p>Drag and drop the correct words into the blanks to complete the sentences.</p>
+                    </div>
+                    <div class="round-stats">
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">Completed:</span>
+                            <span class="round-stat-value" id="round2-completed">0 times</span>
+                        </div>
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">XP Earned:</span>
+                            <span class="round-stat-value xp-earned" id="round2-xp">0 XP</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="exercise-container" id="round2-content" style="display: none;">
@@ -1044,16 +1215,33 @@
                         <button class="nav-btn prev" id="prev-round2">
                             <i class="fas fa-arrow-left"></i> Previous
                         </button>
-                        <button class="nav-btn next" id="next-round2">
-                            Next Round <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <div class="nav-buttons-group">
+                            <button class="nav-btn skip" id="skip-round2">
+                                <i class="fas fa-forward"></i> Skip Round
+                            </button>
+                            <button class="nav-btn next" id="next-round2">
+                                Next Round <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Round 3: Speak & Dictate -->
                 <div class="round-header" id="round3-header" style="display: none;">
-                    <h2><i class="fas fa-microphone"></i> Round 3: Speak & Dictate</h2>
-                    <p>Listen to each sentence with British English pronunciation and speak it aloud.</p>
+                    <div class="round-header-info">
+                        <h2><i class="fas fa-microphone"></i> Round 3: Speak & Dictate</h2>
+                        <p>Listen to each sentence with British English pronunciation and speak it aloud.</p>
+                    </div>
+                    <div class="round-stats">
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">Completed:</span>
+                            <span class="round-stat-value" id="round3-completed">0 times</span>
+                        </div>
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">XP Earned:</span>
+                            <span class="round-stat-value xp-earned" id="round3-xp">0 XP</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="exercise-container" id="round3-content" style="display: none;">
@@ -1089,16 +1277,33 @@
                         <button class="nav-btn prev" id="prev-round3">
                             <i class="fas fa-arrow-left"></i> Previous
                         </button>
-                        <button class="nav-btn next" id="next-round3">
-                            Next Round <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <div class="nav-buttons-group">
+                            <button class="nav-btn skip" id="skip-round3">
+                                <i class="fas fa-forward"></i> Skip Round
+                            </button>
+                            <button class="nav-btn next" id="next-round3">
+                                Next Round <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Round 4: Bonus Words -->
                 <div class="round-header" id="round4-header" style="display: none;">
-                    <h2><i class="fas fa-star"></i> Round 4: Bonus Words</h2>
-                    <p>Expand your vocabulary with these bonus words and example sentences.</p>
+                    <div class="round-header-info">
+                        <h2><i class="fas fa-star"></i> Round 4: Bonus Words</h2>
+                        <p>Expand your vocabulary with these bonus words and example sentences.</p>
+                    </div>
+                    <div class="round-stats">
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">Completed:</span>
+                            <span class="round-stat-value" id="round4-completed">0 times</span>
+                        </div>
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">XP Earned:</span>
+                            <span class="round-stat-value xp-earned" id="round4-xp">0 XP</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="exercise-container" id="round4-content" style="display: none;">
@@ -1109,16 +1314,33 @@
                         <button class="nav-btn prev" id="prev-round4">
                             <i class="fas fa-arrow-left"></i> Previous
                         </button>
-                        <button class="nav-btn next" id="next-round4">
-                            Next Round <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <div class="nav-buttons-group">
+                            <button class="nav-btn skip" id="skip-round4">
+                                <i class="fas fa-forward"></i> Skip Round
+                            </button>
+                            <button class="nav-btn next" id="next-round4">
+                                Next Round <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Round 5: Paragraph Dictation -->
                 <div class="round-header" id="round5-header" style="display: none;">
-                    <h2><i class="fas fa-paragraph"></i> Round 5: Paragraph Dictation</h2>
-                    <p>Listen to the paragraph and fill in the blanks with the correct words.</p>
+                    <div class="round-header-info">
+                        <h2><i class="fas fa-paragraph"></i> Round 5: Paragraph Dictation</h2>
+                        <p>Listen to the paragraph and fill in the blanks with the correct words.</p>
+                    </div>
+                    <div class="round-stats">
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">Completed:</span>
+                            <span class="round-stat-value" id="round5-completed">0 times</span>
+                        </div>
+                        <div class="round-stat-item">
+                            <span class="round-stat-label">XP Earned:</span>
+                            <span class="round-stat-value xp-earned" id="round5-xp">0 XP</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="exercise-container" id="round5-content" style="display: none;">
@@ -1157,16 +1379,21 @@
                         <button class="nav-btn prev" id="prev-round5">
                             <i class="fas fa-arrow-left"></i> Previous
                         </button>
-                        <button class="nav-btn" id="finish-btn">
-                            Finish Lesson <i class="fas fa-trophy"></i>
-                        </button>
+                        <div class="nav-buttons-group">
+                            <button class="nav-btn skip" id="skip-round5">
+                                <i class="fas fa-forward"></i> Skip Round
+                            </button>
+                            <button class="nav-btn" id="finish-btn">
+                                Finish Lesson <i class="fas fa-trophy"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal for messages -->
+    <!-- Success Modal -->
     <div class="modal-overlay" id="success-modal">
         <div class="modal">
             <div class="modal-header">
@@ -1178,8 +1405,48 @@
             <div class="modal-content" id="modal-content">
                 All sentences are completed correctly!
             </div>
+            <div class="modal-stats" id="modal-stats">
+                <!-- Stats will be inserted here -->
+            </div>
             <div class="modal-actions">
                 <button class="modal-btn" id="modal-ok-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip Confirmation Modal -->
+    <div class="modal-overlay" id="skip-modal">
+        <div class="modal skip-confirmation">
+            <div class="modal-header">
+                <div class="modal-icon" style="background-color: var(--skip-color);">
+                    <i class="fas fa-forward"></i>
+                </div>
+                <div class="modal-title">Skip Round?</div>
+            </div>
+            <div class="modal-content">
+                <div class="skip-warning">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    <strong>Warning:</strong> Skipping this round will give you reduced XP.
+                </div>
+                <p>Are you sure you want to skip this round? You will still be able to come back and complete it later.</p>
+                <div class="modal-stats">
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Full XP:</span>
+                        <span class="modal-stat-value" id="full-xp-value">100 XP</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Skipped XP:</span>
+                        <span class="modal-stat-value" id="skipped-xp-value">25 XP</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">XP Lost:</span>
+                        <span class="modal-stat-value" style="color: #F44336;">-75 XP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" id="skip-cancel-btn">Cancel</button>
+                <button class="modal-btn" id="skip-confirm-btn" style="background-color: var(--skip-color);">Skip Round</button>
             </div>
         </div>
     </div>
@@ -1189,11 +1456,27 @@
         const appData = {
             currentRound: 1,
             points: 0,
-            streak: 1,
+            totalXP: 0,
             level: 1,
             currentSentenceIndex: 0,
             round2Score: 0,
             round3Score: 0,
+            // Round completion tracking
+            roundCompletions: {
+                1: { completed: 0, xpEarned: 0, skipped: false },
+                2: { completed: 0, xpEarned: 0, skipped: false },
+                3: { completed: 0, xpEarned: 0, skipped: false },
+                4: { completed: 0, xpEarned: 0, skipped: false },
+                5: { completed: 0, xpEarned: 0, skipped: false }
+            },
+            // XP values for each round
+            roundXP: {
+                1: { full: 100, skipped: 25 },
+                2: { full: 150, skipped: 40 },
+                3: { full: 200, skipped: 50 },
+                4: { full: 100, skipped: 25 },
+                5: { full: 250, skipped: 60 }
+            },
             // All words from all images (11 words total)
             words: [
                 { word: "go on a guided tour", meaning: "We do not need to plan our trip if we go on a guided tour." },
@@ -1278,15 +1561,21 @@
         
         // DOM elements
         const pointsElement = document.getElementById('points');
-        const streakElement = document.getElementById('streak');
+        const totalXPElement = document.getElementById('total-xp');
         const levelElement = document.getElementById('level');
         const roundItems = document.querySelectorAll('.round-item');
         const roundHeaders = document.querySelectorAll('.round-header');
         const roundContents = document.querySelectorAll('.exercise-container');
         const voiceSelect = document.getElementById('voice-select');
         const successModal = document.getElementById('success-modal');
+        const skipModal = document.getElementById('skip-modal');
         const modalContent = document.getElementById('modal-content');
+        const modalStats = document.getElementById('modal-stats');
         const modalOkBtn = document.getElementById('modal-ok-btn');
+        const skipCancelBtn = document.getElementById('skip-cancel-btn');
+        const skipConfirmBtn = document.getElementById('skip-confirm-btn');
+        const fullXPValue = document.getElementById('full-xp-value');
+        const skippedXPValue = document.getElementById('skipped-xp-value');
         
         // Variables for speech synthesis
         let voices = [];
@@ -1296,10 +1585,15 @@
         let isPaused = false;
         let speechRecognition = null;
         
+        // Variables for skip functionality
+        let roundToSkip = null;
+        
         // Initialize the app
         function initApp() {
+            loadProgressFromStorage();
             updateStats();
             loadRound1();
+            updateRoundStatsDisplay();
             setupEventListeners();
             
             // Load voices when they become available
@@ -1311,6 +1605,29 @@
             if (speechSynthesis.getVoices().length > 0) {
                 loadVoices();
             }
+        }
+        
+        // Load progress from localStorage
+        function loadProgressFromStorage() {
+            const savedData = localStorage.getItem('dictationProgress');
+            if (savedData) {
+                const parsedData = JSON.parse(savedData);
+                appData.points = parsedData.points || 0;
+                appData.totalXP = parsedData.totalXP || 0;
+                appData.level = parsedData.level || 1;
+                appData.roundCompletions = parsedData.roundCompletions || appData.roundCompletions;
+            }
+        }
+        
+        // Save progress to localStorage
+        function saveProgressToStorage() {
+            const dataToSave = {
+                points: appData.points,
+                totalXP: appData.totalXP,
+                level: appData.level,
+                roundCompletions: appData.roundCompletions
+            };
+            localStorage.setItem('dictationProgress', JSON.stringify(dataToSave));
         }
         
         // Load available voices
@@ -1395,8 +1712,49 @@
         // Update user stats
         function updateStats() {
             pointsElement.textContent = appData.points;
-            streakElement.textContent = appData.streak;
+            totalXPElement.textContent = appData.totalXP;
             levelElement.textContent = appData.level;
+        }
+        
+        // Update round stats display
+        function updateRoundStatsDisplay() {
+            for (let round = 1; round <= 5; round++) {
+                const completionData = appData.roundCompletions[round];
+                const completedElement = document.getElementById(`round${round}-completed`);
+                const xpElement = document.getElementById(`round${round}-xp`);
+                
+                if (completedElement) {
+                    completedElement.textContent = `${completionData.completed} time${completionData.completed !== 1 ? 's' : ''}`;
+                }
+                
+                if (xpElement) {
+                    xpElement.textContent = `${completionData.xpEarned} XP`;
+                }
+                
+                // Update round item in sidebar
+                const roundItem = document.querySelector(`.round-item[data-round="${round}"]`);
+                if (roundItem) {
+                    // Remove existing badges
+                    const existingBadge = roundItem.querySelector('.completion-badge');
+                    if (existingBadge) {
+                        existingBadge.remove();
+                    }
+                    
+                    // Update classes
+                    roundItem.classList.remove('completed', 'skipped');
+                    
+                    if (completionData.completed > 0) {
+                        roundItem.classList.add('completed');
+                        // Add completion badge
+                        const badge = document.createElement('div');
+                        badge.className = 'completion-badge';
+                        badge.textContent = completionData.completed;
+                        roundItem.appendChild(badge);
+                    } else if (completionData.skipped) {
+                        roundItem.classList.add('skipped');
+                    }
+                }
+            }
         }
         
         // Load Round 1: New Words
@@ -1521,9 +1879,29 @@
             const allFilled = Array.from(blanks).every(blank => blank.classList.contains('has-answer'));
             
             if (allFilled) {
+                // Mark round as completed
+                markRoundAsCompleted(2, appData.round2Score);
+                
                 // Show success message using modal
                 setTimeout(() => {
                     modalContent.textContent = `Great job! All sentences are completed correctly! You earned ${appData.round2Score} points!`;
+                    
+                    // Add stats to modal
+                    modalStats.innerHTML = `
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Round Score:</span>
+                            <span class="modal-stat-value">${appData.round2Score} points</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Round XP:</span>
+                            <span class="modal-stat-value" style="color: var(--xp-color);">${appData.roundXP[2].full} XP</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total Completions:</span>
+                            <span class="modal-stat-value">${appData.roundCompletions[2].completed}</span>
+                        </div>
+                    `;
+                    
                     successModal.classList.add('active');
                     
                     // Add bonus points for completing the round
@@ -1686,13 +2064,156 @@
             const allFilled = Array.from(blanks).every(blank => blank.classList.contains('has-answer'));
             
             if (allFilled) {
+                // Mark round as completed
+                markRoundAsCompleted(5, 100);
+                
                 // Show success message
                 setTimeout(() => {
                     modalContent.textContent = 'Excellent! You have completed the paragraph dictation!';
+                    
+                    // Add stats to modal
+                    modalStats.innerHTML = `
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Round Score:</span>
+                            <span class="modal-stat-value">100 points</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Round XP:</span>
+                            <span class="modal-stat-value" style="color: var(--xp-color);">${appData.roundXP[5].full} XP</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total Completions:</span>
+                            <span class="modal-stat-value">${appData.roundCompletions[5].completed}</span>
+                        </div>
+                    `;
+                    
                     successModal.classList.add('active');
                     addPoints(50);
                 }, 500);
             }
+        }
+        
+        // Mark a round as completed
+        function markRoundAsCompleted(roundNumber, points) {
+            const completionData = appData.roundCompletions[roundNumber];
+            
+            // Increment completion count
+            completionData.completed++;
+            
+            // Calculate XP earned (full XP for completion)
+            const xpEarned = appData.roundXP[roundNumber].full;
+            completionData.xpEarned += xpEarned;
+            
+            // Add XP to total
+            appData.totalXP += xpEarned;
+            
+            // Reset skipped flag if previously skipped
+            if (completionData.skipped) {
+                completionData.skipped = false;
+            }
+            
+            // Update display
+            updateRoundStatsDisplay();
+            updateStats();
+            
+            // Save to storage
+            saveProgressToStorage();
+            
+            // Check for level up
+            checkLevelUp();
+        }
+        
+        // Mark a round as skipped
+        function markRoundAsSkipped(roundNumber) {
+            const completionData = appData.roundCompletions[roundNumber];
+            
+            // Mark as skipped
+            completionData.skipped = true;
+            
+            // Calculate reduced XP earned
+            const xpEarned = appData.roundXP[roundNumber].skipped;
+            completionData.xpEarned += xpEarned;
+            
+            // Add XP to total
+            appData.totalXP += xpEarned;
+            
+            // Update display
+            updateRoundStatsDisplay();
+            updateStats();
+            
+            // Save to storage
+            saveProgressToStorage();
+            
+            // Check for level up
+            checkLevelUp();
+        }
+        
+        // Check for level up
+        function checkLevelUp() {
+            const xpNeededForNextLevel = appData.level * 100;
+            
+            if (appData.totalXP >= xpNeededForNextLevel) {
+                appData.level++;
+                levelElement.textContent = appData.level;
+                
+                // Animate level
+                levelElement.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    levelElement.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Show level up message
+                setTimeout(() => {
+                    modalContent.textContent = `Congratulations! You've reached level ${appData.level}!`;
+                    modalStats.innerHTML = `
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total XP:</span>
+                            <span class="modal-stat-value" style="color: var(--xp-color);">${appData.totalXP} XP</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">New Level:</span>
+                            <span class="modal-stat-value">${appData.level}</span>
+                        </div>
+                    `;
+                    successModal.classList.add('active');
+                }, 500);
+            }
+        }
+        
+        // Show skip confirmation modal
+        function showSkipConfirmation(roundNumber) {
+            roundToSkip = roundNumber;
+            
+            // Update XP values in modal
+            const fullXP = appData.roundXP[roundNumber].full;
+            const skippedXP = appData.roundXP[roundNumber].skipped;
+            const xpLost = fullXP - skippedXP;
+            
+            fullXPValue.textContent = `${fullXP} XP`;
+            skippedXPValue.textContent = `${skippedXP} XP`;
+            
+            // Show modal
+            skipModal.classList.add('active');
+        }
+        
+        // Skip the current round
+        function skipCurrentRound() {
+            if (!roundToSkip) return;
+            
+            // Mark round as skipped
+            markRoundAsSkipped(roundToSkip);
+            
+            // Move to next round
+            if (roundToSkip < 5) {
+                changeRound(roundToSkip + 1);
+            } else {
+                // If skipping last round, go back to first
+                changeRound(1);
+            }
+            
+            // Close modal
+            skipModal.classList.remove('active');
+            roundToSkip = null;
         }
         
         // Shuffle array function (Fisher-Yates algorithm)
@@ -1836,7 +2357,34 @@
                     resultMessage.style.display = 'block';
                     addPoints(30);
                     appData.round3Score += 30;
-                    levelUp();
+                    
+                    // Check if all sentences are completed
+                    if (appData.currentSentenceIndex === appData.dictationSentences.length - 1) {
+                        // Mark round as completed
+                        markRoundAsCompleted(3, appData.round3Score);
+                        
+                        // Show completion modal
+                        setTimeout(() => {
+                            modalContent.textContent = `Congratulations! You completed all dictation sentences!`;
+                            modalStats.innerHTML = `
+                                <div class="modal-stat">
+                                    <span class="modal-stat-label">Round Score:</span>
+                                    <span class="modal-stat-value">${appData.round3Score} points</span>
+                                </div>
+                                <div class="modal-stat">
+                                    <span class="modal-stat-label">Round XP:</span>
+                                    <span class="modal-stat-value" style="color: var(--xp-color);">${appData.roundXP[3].full} XP</span>
+                                </div>
+                                <div class="modal-stat">
+                                    <span class="modal-stat-label">Total Completions:</span>
+                                    <span class="modal-stat-value">${appData.roundCompletions[3].completed}</span>
+                                </div>
+                            `;
+                            successModal.classList.add('active');
+                        }, 1000);
+                    }
+                    
+                    checkLevelUp();
                 } else {
                     resultMessage.textContent = `Good try! You said: "${transcript}". The correct sentence is: "${targetSentence}"`;
                     resultMessage.className = 'result-message incorrect';
@@ -1879,26 +2427,9 @@
             setTimeout(() => {
                 pointsElement.style.transform = 'scale(1)';
             }, 300);
-        }
-        
-        // Level up user
-        function levelUp() {
-            if (appData.points >= appData.level * 100) {
-                appData.level++;
-                levelElement.textContent = appData.level;
-                
-                // Animate level
-                levelElement.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    levelElement.style.transform = 'scale(1)';
-                }, 300);
-                
-                // Show level up message
-                setTimeout(() => {
-                    modalContent.textContent = `Congratulations! You've reached level ${appData.level}!`;
-                    successModal.classList.add('active');
-                }, 500);
-            }
+            
+            // Save to storage
+            saveProgressToStorage();
         }
         
         // Change round
@@ -1929,7 +2460,7 @@
                 content.style.display = 'none';
             });
             
-            document.getElementById(`round${roundNumber}-header`).style.display = 'block';
+            document.getElementById(`round${roundNumber}-header`).style.display = 'flex';
             document.getElementById(`round${roundNumber}-content`).style.display = 'block';
             
             // Load round-specific content
@@ -1977,13 +2508,69 @@
             document.getElementById('next-round4').addEventListener('click', () => changeRound(5));
             document.getElementById('prev-round5').addEventListener('click', () => changeRound(4));
             
+            // Skip buttons
+            document.getElementById('skip-round1').addEventListener('click', () => showSkipConfirmation(1));
+            document.getElementById('skip-round2').addEventListener('click', () => showSkipConfirmation(2));
+            document.getElementById('skip-round3').addEventListener('click', () => showSkipConfirmation(3));
+            document.getElementById('skip-round4').addEventListener('click', () => showSkipConfirmation(4));
+            document.getElementById('skip-round5').addEventListener('click', () => showSkipConfirmation(5));
+            
+            // Skip modal buttons
+            skipCancelBtn.addEventListener('click', function() {
+                skipModal.classList.remove('active');
+                roundToSkip = null;
+            });
+            
+            skipConfirmBtn.addEventListener('click', skipCurrentRound);
+            
             // Finish button
             document.getElementById('finish-btn').addEventListener('click', function() {
                 addPoints(50);
-                appData.streak++;
-                streakElement.textContent = appData.streak;
                 
-                modalContent.textContent = 'Congratulations! You have completed the lesson. You earned 50 bonus points!';
+                // Check if all rounds are completed or skipped
+                let allRoundsCompleted = true;
+                for (let round = 1; round <= 5; round++) {
+                    if (appData.roundCompletions[round].completed === 0 && !appData.roundCompletions[round].skipped) {
+                        allRoundsCompleted = false;
+                        break;
+                    }
+                }
+                
+                if (allRoundsCompleted) {
+                    // Add bonus XP for completing all rounds
+                    const bonusXP = 500;
+                    appData.totalXP += bonusXP;
+                    updateStats();
+                    
+                    modalContent.textContent = 'Outstanding! You have completed the entire lesson! You earned 50 bonus points and 500 bonus XP!';
+                    modalStats.innerHTML = `
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total Points:</span>
+                            <span class="modal-stat-value">${appData.points} points</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total XP:</span>
+                            <span class="modal-stat-value" style="color: var(--xp-color);">${appData.totalXP} XP</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Current Level:</span>
+                            <span class="modal-stat-value">${appData.level}</span>
+                        </div>
+                    `;
+                } else {
+                    modalContent.textContent = 'Congratulations! You have completed the lesson. You earned 50 bonus points!';
+                    modalStats.innerHTML = `
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total Points:</span>
+                            <span class="modal-stat-value">${appData.points} points</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Total XP:</span>
+                            <span class="modal-stat-value" style="color: var(--xp-color);">${appData.totalXP} XP</span>
+                        </div>
+                    `;
+                }
+                
                 successModal.classList.add('active');
                 
                 // Reset to round 1 after modal is closed
@@ -2028,10 +2615,17 @@
                 successModal.classList.remove('active');
             });
             
-            // Close modal when clicking outside
+            // Close modals when clicking outside
             successModal.addEventListener('click', function(e) {
                 if (e.target === successModal) {
                     successModal.classList.remove('active');
+                }
+            });
+            
+            skipModal.addEventListener('click', function(e) {
+                if (e.target === skipModal) {
+                    skipModal.classList.remove('active');
+                    roundToSkip = null;
                 }
             });
         }
